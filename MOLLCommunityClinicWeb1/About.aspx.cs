@@ -11,7 +11,6 @@ namespace MOLLCommunityClinicWeb1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // This page currently displays static information
 
             if (!IsPostBack)
             {

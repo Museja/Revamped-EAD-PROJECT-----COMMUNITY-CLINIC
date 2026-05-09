@@ -44,8 +44,8 @@ namespace MOLLCommunityClinicWeb1
             if (patient != null)
             {
                 txtFullName.Text = patient.Name;
-                txtEmail.Text = patient.EmailAddress;
-                txtPhone.Text = patient.PhoneNumber;
+                txtEmail.Text = patient.Email;
+                txtPhone.Text = patient.Phone;
                 txtAddress.Text = patient.Address;
             }
         }
@@ -93,8 +93,8 @@ namespace MOLLCommunityClinicWeb1
             {
                 PatientID = patientId,
                 Name = txtFullName.Text,
-                EmailAddress = txtEmail.Text,
-                PhoneNumber = txtPhone.Text,
+                Email = txtEmail.Text,
+                Phone = txtPhone.Text,
                 Address = txtAddress.Text
             };
 
@@ -123,7 +123,7 @@ namespace MOLLCommunityClinicWeb1
             LoadAppointments();
         }
 
-        // ================= RESCHEDULE =================
+        // RESCHEDULE
         protected void btnReschedule_Click(object sender, EventArgs e)
         {
             int appointmentId = Convert.ToInt32(txtAppointmentId.Text);

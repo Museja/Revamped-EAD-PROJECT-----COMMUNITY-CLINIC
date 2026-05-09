@@ -98,7 +98,7 @@ namespace MOLLCommunityClinicWeb1.Services
             return list;
         }
 
-        // UPDATE STATUS (important for clinic workflow)
+        // UPDATE STATUS
         public void UpdateStatus(int id, string status)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

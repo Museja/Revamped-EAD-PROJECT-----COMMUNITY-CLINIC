@@ -32,7 +32,7 @@ namespace MOLLCommunityClinicWeb1
             }
         }
 
-        // SEARCH INVENTORY (SERVICE LAYER)
+        // SEARCH INVENTORY
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             try

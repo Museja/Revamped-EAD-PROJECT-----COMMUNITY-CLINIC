@@ -7,7 +7,7 @@ namespace MOLLCommunityClinicWeb1
 {
     public partial class InventoryManagement : System.Web.UI.Page
     {
-        InventoryService inventoryService = new InventoryService();
+        InventoryService InventoryService = new InventoryService();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +27,7 @@ namespace MOLLCommunityClinicWeb1
         private void LoadInventory()
         {
             gvInventory.DataSource =
-                inventoryService.GetAllInventory();
+                InventoryService.GetAllInventory();
 
             gvInventory.DataBind();
         }
@@ -37,7 +37,7 @@ namespace MOLLCommunityClinicWeb1
         {
             string search = txtSearch.Text.Trim().ToLower();
 
-            var results = inventoryService.GetAllInventory()
+            var results = InventoryService.GetAllInventory()
                 .Where(i => i.Item.ToLower().Contains(search))
                 .ToList();
 
@@ -72,7 +72,7 @@ namespace MOLLCommunityClinicWeb1
                 Category = txtCategory.Text
             };
 
-            inventoryService.UpdateInventory(item);
+            InventoryService.UpdateInventory(item);
 
             lblMessage.Text = "Inventory updated successfully.";
 
@@ -84,7 +84,7 @@ namespace MOLLCommunityClinicWeb1
         {
             int id = Convert.ToInt32(txtId.Text);
 
-            inventoryService.DeleteInventory(id);
+            InventoryService.DeleteInventory(id);
 
             lblMessage.Text = "Item deleted successfully.";
 

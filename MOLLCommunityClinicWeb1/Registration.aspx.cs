@@ -14,7 +14,7 @@ namespace MOLLCommunityClinicWeb1
         {
             lblMessage.Text = "";
         }
-
+        //Visible if User selects Admin or Medical Staff role
         protected void Role_CheckedChanged(object sender, EventArgs e)
         {
             pnlAdmin.Visible = radioAdmin.Checked;
@@ -23,40 +23,51 @@ namespace MOLLCommunityClinicWeb1
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            //  Validate password match
-            if (txtPassword.Text != txtConfirmpassword.Text)
+            try
             {
-                lblMessage.Text = "Passwords do not match.";
-                return;
+                // Validate password match
+                if (txtPassword.Text != txtConfirmpassword.Text)
+                {
+                    lblMessage.Text = "Passwords do not match.";
+                    return;
+                }
+
+                string role = GetRole();
+
+                if (string.IsNullOrEmpty(role))
+                {
+                    lblMessage.Text = "Please select a role.";
+                    return;
+                }
+
+                // Build user object
+                RegistrationWeb user = new RegistrationWeb
+                {
+                    FullName = txtFullname.Text,
+                    EmailAddress = txtEmail.Text,
+                    Password = HashPassword(txtPassword.Text),
+                    Role = role,
+                    AdminID = role == "Admin" ? txtAdminId.Text : null,
+                    MedStaffID = role == "Medical Staff" ? txtMedStaff.Text : null
+                };
+
+                // Save to database
+                userService.RegisterUser(user);
+
+                // ROLE-BASED REDIRECT
+                if (role == "Patient")
+                {
+                    Response.Redirect("~/Success.aspx");
+                }
+                else if (role == "Admin" || role == "Medical Staff")
+                {
+                    Response.Redirect("~/StaffDashboard.aspx");
+                }
             }
-
-            string role = GetRole();
-
-            if (string.IsNullOrEmpty(role))
+            catch (Exception ex)
             {
-                lblMessage.Text = "Please select a role.";
-                return;
+                lblMessage.Text = "Error: " + ex.Message;
             }
-
-            // Build User model
-            RegistrationWeb user = new RegistrationWeb
-            {
-                FullName = txtFullname.Text,
-                EmailAddress = txtEmail.Text,
-                Password = HashPassword(txtPassword.Text),
-                Role = role,
-                AdminID = role == "Admin" ? txtAdminId.Text : null,
-                MedStaffID = role == "Medical Staff" ? txtMedStaff.Text : null
-            };
-
-            //  Call SERVICE LAYER 
-            RegistrationService service = new RegistrationService();
-
-            // CALL METHOD HERE
-            service.RegisterUser(user);
-
-            // REDIRECT TO SUCCESS PAGE
-            Response.Redirect("~/Success.aspx");
         }
 
         private string HashPassword(string password)
@@ -76,6 +87,7 @@ namespace MOLLCommunityClinicWeb1
             return "";
         }
 
+        //Exit button to return to home page
         protected void btnExit_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Default.aspx");

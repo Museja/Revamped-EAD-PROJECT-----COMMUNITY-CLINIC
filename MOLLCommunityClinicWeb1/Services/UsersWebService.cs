@@ -95,7 +95,7 @@ namespace MOLLCommunityClinicWeb1.Services
             LockAccountIfNeeded(email);
         }
 
-        // LOCK ACCOUNT (FIXED FLOW)
+        // LOCK ACCOUNT
         private void LockAccountIfNeeded(string email)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

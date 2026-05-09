@@ -16,7 +16,7 @@ namespace MOLLCommunityClinicWeb1
             }
         }
 
-        // LOAD ALL PATIENTS (FROM DATABASE)
+        // LOAD ALL PATIENTS
         private void LoadPatients()
         {
             try
@@ -32,19 +32,23 @@ namespace MOLLCommunityClinicWeb1
             }
         }
 
-        // SEARCH PATIENTS (USING SERVICE)
+        // SEARCH PATIENTS
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
                 string search = txtSearch.Text.Trim();
 
-                var results = patientService.SearchPatients(search);
+                // create instance of service
+                PatientService service = new PatientService();
+
+                
+                var results = service.SearchPatient(search);
 
                 gvPatients.DataSource = results;
                 gvPatients.DataBind();
 
-                if (results.Count == 0)
+                if (results == null || results.Count == 0)
                 {
                     lblMessage.Text = "No patients found.";
                 }

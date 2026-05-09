@@ -19,14 +19,14 @@ namespace MOLLCommunityClinicWeb1
                 Inventory1 item = new Inventory1
                 {
                     Item = txtItem.Text,
-                    DateAdded = Convert.ToDateTime(txtDateAdded.Text),
+                    Date_Added = Convert.ToDateTime(txtDateAdded.Text),
                     Quantity = Convert.ToInt32(txtQuantity.Text),
                     Description = txtDescription.Text,
                     Price = Convert.ToDecimal(txtPrice.Text),
                     Expiration = Convert.ToDateTime(txtExpiration.Text),
                     Category = txtCategory.Text,
                     Unit = txtUnit.Text,
-                    BatchNumber = txtBatchNumber.Text,
+                    Batch = txtBatchNumber.Text,
                     Manufacturer = txtManufacturer.Text,
                     Supplier = txtSupplier.Text,
                     Status = txtStatus.Text,
@@ -54,14 +54,14 @@ namespace MOLLCommunityClinicWeb1
                 {
                     Id = Convert.ToInt32(ViewState["InventoryId"]), // assumes you store selected ID
                     Item = txtItem.Text,
-                    DateAdded = Convert.ToDateTime(txtDateAdded.Text),
+                    Date_Added = Convert.ToDateTime(txtDateAdded.Text),
                     Quantity = Convert.ToInt32(txtQuantity.Text),
                     Description = txtDescription.Text,
                     Price = Convert.ToDecimal(txtPrice.Text),
                     Expiration = Convert.ToDateTime(txtExpiration.Text),
                     Category = txtCategory.Text,
                     Unit = txtUnit.Text,
-                    BatchNumber = txtBatchNumber.Text,
+                    Batch = txtBatchNumber.Text,
                     Manufacturer = txtManufacturer.Text,
                     Supplier = txtSupplier.Text,
                     Status = txtStatus.Text,

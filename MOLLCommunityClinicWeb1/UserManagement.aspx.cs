@@ -73,8 +73,8 @@ namespace MOLLCommunityClinicWeb1
             {
                 PatientID = Convert.ToInt32(txtId.Text),
                 Name = txtName.Text,
-                EmailAddress = txtEmail.Text,
-                PhoneNumber = txtPhone.Text,
+                Email = txtEmail.Text,
+                Phone = txtPhone.Text,
                 Address = txtAddress.Text
             };
 

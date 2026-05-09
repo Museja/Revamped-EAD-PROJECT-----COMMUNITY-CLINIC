@@ -26,15 +26,15 @@ namespace MOLLCommunityClinicWeb1.Services
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@FullName", Patient.Name);
-                cmd.Parameters.AddWithValue("@DOB", Patient.DateOfBirth);
+                cmd.Parameters.AddWithValue("@DOB", Patient.DOB);
                 cmd.Parameters.AddWithValue("@Age", Patient.Age);
                 cmd.Parameters.AddWithValue("@Gender", Patient.Gender);
-                cmd.Parameters.AddWithValue("@Phone", Patient.PhoneNumber);
+                cmd.Parameters.AddWithValue("@Phone", Patient.Phone);
                 cmd.Parameters.AddWithValue("@Address", Patient.Address);
                 cmd.Parameters.AddWithValue("@Allergies", Patient.Allergies ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@MedicalHistory", Patient.History ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Medications", Patient.Medications ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Email", Patient.EmailAddress ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Email", Patient.Email ?? (object)DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -48,7 +48,7 @@ namespace MOLLCommunityClinicWeb1.Services
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Patients";
+                string query = "SELECT * FROM Patient";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -61,15 +61,15 @@ namespace MOLLCommunityClinicWeb1.Services
                     {
                         PatientID = Convert.ToInt32(reader["Id"]),
                         Name = reader["FullName"].ToString(),
-                        DateOfBirth = Convert.ToDateTime(reader["DOB"]),
+                        DOB = Convert.ToDateTime(reader["DOB"]),
                         Age = Convert.ToInt32(reader["Age"]),
                         Gender = reader["Gender"].ToString(),
-                        PhoneNumber = reader["Phone"].ToString(),
+                        Phone = reader["Phone"].ToString(),
                         Address = reader["Address"].ToString(),
                         Allergies = reader["Allergies"].ToString(),
                         History = reader["MedicalHistory"].ToString(),
                         Medications = reader["Medications"].ToString(),
-                        EmailAddress = reader["Email"].ToString()
+                        Email = reader["Email"].ToString()
                     });
                 }
             }
@@ -78,14 +78,14 @@ namespace MOLLCommunityClinicWeb1.Services
         }
 
         // SEARCH PATIENTS
-        public List<PatientWeb> SearchPatients(string keyword)
+        public List<PatientWeb> SearchPatient(string keyword)
         {
-            List<PatientWeb> patients = new List<PatientWeb>();
+            List<PatientWeb> Patient = new List<PatientWeb>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT * FROM Patients
-                                 WHERE FullName LIKE @Keyword
+                string query = @"SELECT * FROM Patient
+                                 WHERE Name LIKE @Keyword
                                  OR Phone LIKE @Keyword
                                  OR Email LIKE @Keyword";
 
@@ -97,24 +97,24 @@ namespace MOLLCommunityClinicWeb1.Services
 
                 while (reader.Read())
                 {
-                    patients.Add(new PatientWeb
+                    Patient.Add(new PatientWeb
                     {
                         PatientID = Convert.ToInt32(reader["Id"]),
                         Name = reader["FullName"].ToString(),
-                        DateOfBirth = Convert.ToDateTime(reader["DOB"]),
+                        DOB = Convert.ToDateTime(reader["DOB"]),
                         Age = Convert.ToInt32(reader["Age"]),
                         Gender = reader["Gender"].ToString(),
-                        PhoneNumber = reader["Phone"].ToString(),
+                        Phone = reader["Phone"].ToString(),
                         Address = reader["Address"].ToString(),
                         Allergies = reader["Allergies"].ToString(),
                         History = reader["MedicalHistory"].ToString(),
                         Medications = reader["Medications"].ToString(),
-                        EmailAddress = reader["Email"].ToString()
+                        Email = reader["Email"].ToString()
                     });
                 }
             }
 
-            return patients;
+            return Patient;
         }
 
         // DELETE PATIENT
@@ -132,20 +132,20 @@ namespace MOLLCommunityClinicWeb1.Services
             }
         }
 
-        // UPDATE PATIENT (optional but recommended)
+        // UPDATE PATIENT
         public void UpdatePatient(PatientWeb Patient)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"UPDATE Patient SET
-                                FullName = @FullName,
+                                Name = @Name,
                                 DOB = @DOB,
                                 Age = @Age,
                                 Gender = @Gender,
                                 Phone = @Phone,
                                 Address = @Address,
                                 Allergies = @Allergies,
-                                MedicalHistory = @MedicalHistory,
+                                History = @History,
                                 Medications = @Medications,
                                 Email = @Email
                                 WHERE Id = @Id";
@@ -154,15 +154,15 @@ namespace MOLLCommunityClinicWeb1.Services
 
                 cmd.Parameters.AddWithValue("@Id", Patient.PatientID);
                 cmd.Parameters.AddWithValue("@FullName", Patient.Name);
-                cmd.Parameters.AddWithValue("@DOB", Patient.DateOfBirth);
+                cmd.Parameters.AddWithValue("@DOB", Patient.DOB);
                 cmd.Parameters.AddWithValue("@Age", Patient.Age);
                 cmd.Parameters.AddWithValue("@Gender", Patient.Gender);
-                cmd.Parameters.AddWithValue("@Phone", Patient.PhoneNumber);
+                cmd.Parameters.AddWithValue("@Phone", Patient.Phone);
                 cmd.Parameters.AddWithValue("@Address", Patient.Address);
                 cmd.Parameters.AddWithValue("@Allergies", Patient.Allergies ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@MedicalHistory", Patient.History ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Medications", Patient.Medications ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Email", Patient.EmailAddress ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Email", Patient.Email ?? (object)DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();

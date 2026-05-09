@@ -13,7 +13,7 @@ namespace MOLLCommunityClinicWeb1.Models
 
         public string EmailAddress { get; set; }
 
-        // Store hashed password (NEVER plain text)
+        // Store hashed password
         public string Password { get; set; }
 
         public string Role { get; set; }

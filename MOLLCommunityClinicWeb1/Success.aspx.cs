@@ -13,7 +13,7 @@ namespace MOLLCommunityClinicWeb1
         {
         }
 
-        // GO TO NEXT PAGE (PATIENT FORM)
+        // GO TO NEXT PAGE
         protected void btnNext_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/PatientForm.aspx");

@@ -13,7 +13,7 @@ namespace MOLLCommunityClinicWeb1.Services
         private readonly string connectionString =
             ConfigurationManager.ConnectionStrings["CommunityClinicLLOMDB"].ConnectionString;
 
-        // CREATE / REGISTER USER
+        // REGISTER USER
         public void RegisterUser(RegistrationWeb user)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -41,7 +41,7 @@ namespace MOLLCommunityClinicWeb1.Services
             }
         }
 
-        // GET USER BY EMAIL (for login later)
+        // GET USER BY EMAIL
         public RegistrationWeb GetUserByEmail(string email)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

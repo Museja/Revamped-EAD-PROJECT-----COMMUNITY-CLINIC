@@ -23,7 +23,7 @@ namespace MOLLCommunityClinicWeb1
                     Status = ddlStatus.SelectedValue
                 };
 
-                // call service or DAL
+                // call service
                 AppointmentsService service = new AppointmentsService();
                 service.BookAppointment(appt);
 

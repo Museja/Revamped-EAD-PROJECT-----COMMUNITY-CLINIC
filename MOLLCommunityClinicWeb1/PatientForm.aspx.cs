@@ -20,10 +20,10 @@ namespace MOLLCommunityClinicWeb1
                 PatientWeb Patient = new PatientWeb
                 {
                     Name = txtFullName.Text,
-                    EmailAddress = txtEmail.Text,
-                    DateOfBirth = txtDOB.Text,
+                    Email = txtEmail.Text,
+                    DOB = Convert.ToDateTime(txtDOB.Text),
                     Gender = ddlGender.SelectedValue,
-                    PhoneNumber = txtPhone.Text,
+                    Phone = txtPhone.Text,
                     Address = txtAddress.Text,
                     Allergies = txtAllergies.Text,
                     Medications = txtMedications.Text,
