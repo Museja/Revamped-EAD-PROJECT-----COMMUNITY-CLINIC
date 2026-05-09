@@ -1,0 +1,213 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MOLLCommunityClinicWeb1.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title><%: Page.Title %> - MOLL Community Clinic</title>
+
+<asp:PlaceHolder runat="server">
+    <%: Scripts.Render("~/bundles/modernizr") %>
+</asp:PlaceHolder>
+
+<webopt:bundlereference runat="server" path="~/Content/css" />
+<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+<style>
+    body {
+        background-color: #f4f6f9;
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        background-color: #1a6b8a !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        padding: 0.8rem 1rem;
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: #fff !important;
+    }
+
+    .nav-link {
+        color: #d0eaf5 !important;
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem !important;
+    }
+
+    .nav-link:hover {
+        color: #fff !important;
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 4px;
+    }
+
+    /* PAGE CONTAINER */
+    .container.body-content {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 2.5rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    /* FORM */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        max-width: 450px;
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+        background-color: #1a6b8a;
+        border: none;
+        color: #fff;
+        padding: 0.6rem 1.4rem;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #145570;
+    }
+
+    /* FOOTER */
+    footer {
+        text-align: center;
+        color: #888;
+        font-size: 0.85rem;
+        padding-top: 1rem;
+    }
+</style>
+
+</head>
+
+<body>
+
+<form runat="server">
+
+<asp:ScriptManager runat="server">
+    <Scripts>
+        <asp:ScriptReference Name="MsAjaxBundle" />
+        <asp:ScriptReference Name="jquery" />
+        <asp:ScriptReference Name="WebFormsBundle" />
+    </Scripts>
+</asp:ScriptManager>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-sm navbar-dark">
+<div class="container">
+
+    <a class="navbar-brand" runat="server" href="~/">
+        🏥 MOLL Community Clinic
+    </a>
+
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+
+        <ul class="navbar-nav flex-grow-1">
+
+            <!-- HOME / PUBLIC -->
+            <li class="nav-item">
+                <a class="nav-link" runat="server" href="~/Default.aspx">
+                    Home
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" runat="server" href="~/Registration.aspx">
+                    Register
+                </a>
+            </li>
+
+            <!-- PATIENT LOGIN -->
+            <li class="nav-item">
+                <a class="nav-link" runat="server" href="~/PatientLogin.aspx">
+                    Patient Login
+                </a>
+            </li>
+
+            <!-- STAFF LOGIN -->
+            <li class="nav-item">
+                <a class="nav-link" runat="server" href="~/StaffLogin.aspx">
+                    Staff Login
+                </a>
+            </li>
+
+            <!-- APPOINTMENTS -->
+            <li class="nav-item">
+                <a class="nav-link" runat="server" href="~/Appointments.aspx">
+                    Book Appointment
+                </a>
+            </li>
+
+            <!-- ABOUT -->
+            <li class="nav-item">
+                <a class="nav-link" runat="server" href="~/About.aspx">
+                    About Us
+                </a>
+            </li>
+
+            <!-- CONTACT -->
+            <li class="nav-item">
+                <a class="nav-link" runat="server" href="~/Contact.aspx">
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+</nav>
+
+<!-- PAGE CONTENT -->
+<div class="container body-content">
+
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <hr />
+
+    <footer>
+        <p>&copy; <%: DateTime.Now.Year %> MOLL Community Clinic — Patient Management System</p>
+    </footer>
+
+</div>
+
+</form>
+
+<asp:PlaceHolder runat="server">
+    <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+</asp:PlaceHolder>
+
+</body>
+</html>

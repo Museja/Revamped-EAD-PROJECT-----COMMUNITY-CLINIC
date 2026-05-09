@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E7A5A6CF-30A0-4A4F-83F0-67706A2C2D20}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CommunityClinic</RootNamespace>
+    <AssemblyName>CommunityClinic</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CommunityClinic.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Appointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appointments.Designer.cs">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Appointmentslist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appointmentslist.Designer.cs">
+      <DependentUpon>Appointmentslist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityClinicLLOMDBDataSet.cs">
+      <DependentUpon>CommunityClinicLLOMDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityClinicLLOMDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommunityClinicLLOMDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityClinicLLOMDBDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommunityClinicLLOMDBDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\UsersDAL.cs" />
+    <Compile Include="HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventorylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventorylist.Designer.cs">
+      <DependentUpon>Inventorylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryManagement.Designer.cs">
+      <DependentUpon>InventoryManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatabaseHelper.cs" />
+    <Compile Include="Data\AppointmentsDAL.cs" />
+    <Compile Include="Data\InventoryDAL.cs" />
+    <Compile Include="Data\MedicalHistoryDAL.cs" />
+    <Compile Include="Data\PrescriptionsDAL.cs" />
+    <Compile Include="Data\RegistrationDAL.cs" />
+    <Compile Include="InventoryItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryItemForm.Designer.cs">
+      <DependentUpon>InventoryItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogoutForm.Designer.cs">
+      <DependentUpon>LogoutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppointmentsModels.cs" />
+    <Compile Include="Models\Inventoryitems.cs" />
+    <Compile Include="Models\MedicalHistoryModels.cs" />
+    <Compile Include="Models\PatientModels.cs" />
+    <Compile Include="Data\PatientDAL.cs" />
+    <Compile Include="Models\Registrationclass.cs" />
+    <Compile Include="Models\SessionManager.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="PatientdataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientdataForm.Designer.cs">
+      <DependentUpon>PatientdataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Patientlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patientlist.Designer.cs">
+      <DependentUpon>Patientlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientLogin.Designer.cs">
+      <DependentUpon>PatientLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPortalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientPortalForm.Designer.cs">
+      <DependentUpon>PatientPortalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrationForm.Designer.cs">
+      <DependentUpon>RegistrationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffDashboard.Designer.cs">
+      <DependentUpon>StaffDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffLogin.Designer.cs">
+      <DependentUpon>StaffLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuccessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuccessForm.Designer.cs">
+      <DependentUpon>SuccessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="txtPrice\Text.cs" />
+    <Compile Include="UserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserManagement.Designer.cs">
+      <DependentUpon>UserManagement.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryItemForm.resx">
+      <DependentUpon>InventoryItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventorylist.resx">
+      <DependentUpon>Inventorylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryManagement.resx">
+      <DependentUpon>InventoryManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogoutForm.resx">
+      <DependentUpon>LogoutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientdataForm.resx">
+      <DependentUpon>PatientdataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patientlist.resx">
+      <DependentUpon>Patientlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientLogin.resx">
+      <DependentUpon>PatientLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientPortalForm.resx">
+      <DependentUpon>PatientPortalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="RegistrationForm.resx">
+      <DependentUpon>RegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffDashboard.resx">
+      <DependentUpon>StaffDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffLogin.resx">
+      <DependentUpon>StaffLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuccessForm.resx">
+      <DependentUpon>SuccessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserManagement.resx">
+      <DependentUpon>UserManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="CommunityClinicLLOMDBDataSet.xsc">
+      <DependentUpon>CommunityClinicLLOMDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CommunityClinicLLOMDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CommunityClinicLLOMDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CommunityClinicLLOMDBDataSet.xss">
+      <DependentUpon>CommunityClinicLLOMDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CommunityClinicLLOMDBDataSet1.xsc">
+      <DependentUpon>CommunityClinicLLOMDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="CommunityClinicLLOMDBDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CommunityClinicLLOMDBDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CommunityClinicLLOMDBDataSet1.xss">
+      <DependentUpon>CommunityClinicLLOMDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image0.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image01.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image02.jpeg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

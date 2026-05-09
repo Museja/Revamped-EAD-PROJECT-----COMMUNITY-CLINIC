@@ -1,0 +1,128 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* PAGE CONTAINER */
+.container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* HEADINGS */
+h2 {
+    color: #2c3e50;
+}
+
+h3 {
+    color: #34495e;
+    margin-top: 20px;
+}
+
+/* LABEL MESSAGE */
+.msg-success {
+    color: green;
+    font-weight: bold;
+}
+
+.msg-error {
+    color: red;
+    font-weight: bold;
+}
+
+/* FORM INPUTS */
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 300px;
+    padding: 8px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-success {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #f39c12;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-info {
+    background-color: #1abc9c;
+    color: white;
+}
+
+/* MENU (MDI STYLE DASHBOARD) */
+.menu-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+    /* LINKS */
+    .menu-container a {
+        display: block;
+        padding: 8px;
+        color: #2c3e50;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .menu-container a:hover {
+            background-color: #ecf0f1;
+            border-radius: 4px;
+        }
+
+/* GRID VIEW */
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+}
+
+    table th {
+        background-color: #2c3e50;
+        color: white;
+        padding: 10px;
+    }
+
+    table td {
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+/* HR LINES */
+hr {
+    margin: 20px 0;
+}
