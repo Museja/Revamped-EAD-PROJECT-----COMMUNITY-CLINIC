@@ -61,10 +61,10 @@ namespace CommunityClinic
                 if (patient != null)
                 {
                     txtFullName.Text = patient.Name;
-                    txtPhone.Text = patient.PhoneNumber;
-                    txtEmail.Text = patient.EmailAddress;
+                    txtPhone.Text = patient.Phone;
+                    txtEmail.Text = patient.Email;
                     txtAddress.Text = patient.Address;
-                    dtDOB.Value = patient.DateOfBirth;
+                    dtDOB.Value = patient.DOB;
                 }
             }
             catch (Exception ex)
@@ -82,10 +82,10 @@ namespace CommunityClinic
                 {
                     PatientID = patientId,
                     Name = txtFullName.Text.Trim(),
-                    PhoneNumber = txtPhone.Text.Trim(),
-                    EmailAddress = txtEmail.Text.Trim(),
+                    Phone = txtPhone.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
                     Address = txtAddress.Text.Trim(),
-                    DateOfBirth = dtDOB.Value
+                    DOB = dtDOB.Value
                 };
 
                 bool success = patientDAL.UpdatePatient(patient);

@@ -69,11 +69,11 @@ namespace CommunityClinic
                 Patient patient = new Patient
                 {
                     Name = txtName.Text.Trim(),
-                    DateOfBirth = dob,
+                    DOB = dob,
                     Age = age,
                     Address = txtAddress.Text.Trim(),
-                    PhoneNumber = txtPhonenumber.Text.Trim(),
-                    EmailAddress = txtEmail.Text.Trim(),
+                    Phone = txtPhonenumber.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
                     Gender = txtGender.Text.Trim(),
                     Allergies = txtAllergies.Text.Trim(),
                     History = txtHistory.Text.Trim(),
@@ -108,11 +108,11 @@ namespace CommunityClinic
                 Patient patient = new Patient
                 {
                     Name = txtName.Text.Trim(),
-                    DateOfBirth = DateTime.Parse(txtDOB.Text),
+                    DOB = DateTime.Parse(txtDOB.Text),
                     Age = int.Parse(txtAge.Text),
                     Address = txtAddress.Text.Trim(),
-                    PhoneNumber = txtPhonenumber.Text.Trim(),
-                    EmailAddress = txtEmail.Text.Trim(),
+                    Phone = txtPhonenumber.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
                     Gender = txtGender.Text.Trim(),
                     Allergies = txtAllergies.Text.Trim(),
                     History = txtHistory.Text.Trim(),
