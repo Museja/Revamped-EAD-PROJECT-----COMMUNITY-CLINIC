@@ -20,10 +20,10 @@ namespace CommunityClinic
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"
-                    SELECT PatientID, Name, DateOfBirth, Age, Address,
-                           PhoneNumber, EmailAddress, Gender,
+                    SELECT PatientID, Name, DOB, Age, Address,
+                           Phone, Email, Gender,
                            Allergies, History, Medications
-                    FROM Patients
+                    FROM Patient
                     ORDER BY Name";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
@@ -41,12 +41,12 @@ namespace CommunityClinic
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"
-                    SELECT PatientID, Name, DateOfBirth, Age, Address,
-                           PhoneNumber, EmailAddress, Gender,
+                    SELECT PatientID, Name, DOB, Age, Address,
+                           Phone, Email, Gender,
                            Allergies, History, Medications
-                    FROM Patients
+                    FROM Patient
                     WHERE Name LIKE @Search
-                       OR EmailAddress LIKE @Search
+                       OR Email LIKE @Search
                     ORDER BY Name";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -66,7 +66,7 @@ namespace CommunityClinic
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM Patients WHERE PatientID = @PatientID";
+                string query = "DELETE FROM Patient WHERE PatientID = @PatientID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -82,21 +82,20 @@ namespace CommunityClinic
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO Patients
-                (Name, DateOfBirth, Age, Address, PhoneNumber,
-                 EmailAddress, Gender, Allergies, History, Medications)
+                string query = @"INSERT INTO Patient
+                (Name, DOB, Age, Address, Phone,
+                 Email, Gender, Allergies, History, Medications)
                 VALUES
-                (@Name, @DateOfBirth, @Age, @Address, @PhoneNumber,
-                 @EmailAddress, @Gender, @Allergies, @History, @Medications)";
-
+                (@Name, @DOB, @Age, @Address, @Phone,
+                 @Email, @Gender, @Allergies, @History, @Medications)";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@Name", patient.Name);
-                cmd.Parameters.AddWithValue("@DateOfBirth", patient.DateOfBirth);
+                cmd.Parameters.AddWithValue("@DOB", patient.DateOfBirth);
                 cmd.Parameters.AddWithValue("@Age", patient.Age);
                 cmd.Parameters.AddWithValue("@Address", patient.Address);
-                cmd.Parameters.AddWithValue("@PhoneNumber", patient.PhoneNumber);
-                cmd.Parameters.AddWithValue("@EmailAddress", patient.EmailAddress);
+                cmd.Parameters.AddWithValue("@Phone", patient.PhoneNumber);
+                cmd.Parameters.AddWithValue("@Email", patient.EmailAddress);
                 cmd.Parameters.AddWithValue("@Gender", patient.Gender);
                 cmd.Parameters.AddWithValue("@Allergies", patient.Allergies ?? "");
                 cmd.Parameters.AddWithValue("@History", patient.History ?? "");
@@ -113,13 +112,13 @@ namespace CommunityClinic
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"UPDATE Patients SET
+                string query = @"UPDATE Patient SET
                     Name=@Name,
-                    DateOfBirth=@DateOfBirth,
+                    DOB=@DOB,
                     Age=@Age,
                     Address=@Address,
-                    PhoneNumber=@PhoneNumber,
-                    EmailAddress=@EmailAddress,
+                    Phone=@Phone,
+                    Email=@Email,
                     Gender=@Gender,
                     Allergies=@Allergies,
                     History=@History,
@@ -130,11 +129,11 @@ namespace CommunityClinic
 
                 cmd.Parameters.AddWithValue("@PatientID", patient.PatientID);
                 cmd.Parameters.AddWithValue("@Name", patient.Name);
-                cmd.Parameters.AddWithValue("@DateOfBirth", patient.DateOfBirth);
+                cmd.Parameters.AddWithValue("@DOB", patient.DateOfBirth);
                 cmd.Parameters.AddWithValue("@Age", patient.Age);
                 cmd.Parameters.AddWithValue("@Address", patient.Address);
-                cmd.Parameters.AddWithValue("@PhoneNumber", patient.PhoneNumber);
-                cmd.Parameters.AddWithValue("@EmailAddress", patient.EmailAddress);
+                cmd.Parameters.AddWithValue("@Phone", patient.PhoneNumber);
+                cmd.Parameters.AddWithValue("@Email", patient.EmailAddress);
                 cmd.Parameters.AddWithValue("@Gender", patient.Gender);
                 cmd.Parameters.AddWithValue("@Allergies", patient.Allergies ?? "");
                 cmd.Parameters.AddWithValue("@History", patient.History ?? "");
@@ -152,7 +151,7 @@ namespace CommunityClinic
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query =
-                    "SELECT * FROM Patients WHERE PatientID=@PatientID";
+                    "SELECT * FROM Patient WHERE PatientID=@PatientID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -168,11 +167,11 @@ namespace CommunityClinic
                         {
                             PatientID = Convert.ToInt32(reader["PatientID"]),
                             Name = reader["Name"].ToString(),
-                            DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]),
+                            DateOfBirth = Convert.ToDateTime(reader["DOB"]),
                             Age = Convert.ToInt32(reader["Age"]),
                             Address = reader["Address"].ToString(),
-                            PhoneNumber = reader["PhoneNumber"].ToString(),
-                            EmailAddress = reader["EmailAddress"].ToString(),
+                            PhoneNumber = reader["Phone"].ToString(),
+                            EmailAddress = reader["Email"].ToString(),
                             Gender = reader["Gender"].ToString(),
                             Allergies = reader["Allergies"].ToString(),
                             History = reader["History"].ToString(),

@@ -24,7 +24,7 @@ namespace CommunityClinic
             item.Item = txtItem.Text.Trim();
 
             DateTime.TryParse(txtDateAdded.Text, out DateTime dateAdded);
-            item.DateAdded = dateAdded;
+            item.Date_Added = dateAdded;
 
             int.TryParse(txtQuantity.Text, out int quantity);
             item.Quantity = quantity;
@@ -39,7 +39,7 @@ namespace CommunityClinic
 
             item.Category = txtCategory.Text.Trim();
             item.Unit = txtUnit.Text.Trim();
-            item.BatchNumber = txtBatchNumber.Text.Trim();
+            item.Batch = txtBatchNumber.Text.Trim();
             item.Manufacturer = txtManufacturer.Text.Trim();
             item.Supplier = txtSupplier.Text.Trim();
             item.Status = txtStatus.Text.Trim();

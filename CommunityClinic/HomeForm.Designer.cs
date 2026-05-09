@@ -32,6 +32,8 @@
             this.Register = new System.Windows.Forms.Button();
             this.PatientLogin = new System.Windows.Forms.Button();
             this.StaffLogin = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -78,6 +80,26 @@
             this.StaffLogin.UseVisualStyleBackColor = false;
             this.StaffLogin.Click += new System.EventHandler(this.StaffLogin_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnExit.Location = new System.Drawing.Point(558, 306);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(115, 25);
+            this.btnExit.TabIndex = 5;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -85,6 +107,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = global::CommunityClinic.Properties.Resources.image0;
             this.ClientSize = new System.Drawing.Size(800, 565);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.StaffLogin);
             this.Controls.Add(this.PatientLogin);
             this.Controls.Add(this.Register);
@@ -102,5 +126,7 @@
         private System.Windows.Forms.Button Register;
         private System.Windows.Forms.Button PatientLogin;
         private System.Windows.Forms.Button StaffLogin;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExit;
     }
 }
