@@ -12,10 +12,14 @@ namespace CommunityClinic.Models
 
         public int PatientId { get; set; }
 
-        public DateTime AppointmentDate { get; set; }
+        public string DoctorName { get; set; }
+
+        public string Status { get; set; }
+        public DateTime AppointmentDateTime { get; set; }
+
+        public string FullName { get; set; }
 
         public string Reason { get; set; }
 
-        public string Status { get; set; }
     }
 }

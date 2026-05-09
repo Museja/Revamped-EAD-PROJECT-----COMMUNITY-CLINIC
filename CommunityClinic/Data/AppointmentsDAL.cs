@@ -6,19 +6,35 @@ namespace CommunityClinic.Data
 {
     public class AppointmentsDAL
     {
-        // REFRESH / LOAD APPOINTMENTS
-
-        public DataTable GetAppointmentsByPatient(int PatientId)
+        // GET APPOINTMENTS
+        public DataTable GetAppointmentsByPatient(int patientId)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 string query = @"SELECT * 
                                  FROM Appointments 
-                                 WHERE PatientId = @Id
-                                 ORDER BY AppointmentDate DESC";
+                                 WHERE PatientId = @PatientId
+                                 ORDER BY AppointmentDateTime DESC";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                da.SelectCommand.Parameters.AddWithValue("@Id", PatientId);
+                da.SelectCommand.Parameters.AddWithValue("@PatientId", patientId);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt;
+            }
+        }
+        // Get All appointments for admin view
+        public DataTable GetAllAppointments()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                string query = @"SELECT * 
+                         FROM Appointments
+                         ORDER BY AppointmentDateTime DESC";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
 
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -27,21 +43,22 @@ namespace CommunityClinic.Data
             }
         }
 
-
         // BOOK APPOINTMENT
-        public bool BookAppointment(int Id, DateTime date, string reason)
+        public bool BookAppointment(int patientId, string fullName, string doctorName, DateTime appointmentDateTime, string reason)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 string query = @"INSERT INTO Appointments
-                                (Id, AppointmentDate, Reason, Status)
+                                (PatientId, FullName, DoctorName, AppointmentDateTime, Reason, Status)
                                 VALUES
-                                (@PatientId, @Date, @Reason, 'Pending')";
+                                (@PatientId, @FullName, @DoctorName, @AppointmentDateTime, @Reason, 'Pending')";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@PatientId", Id);
-                cmd.Parameters.AddWithValue("@Date", date);
+                cmd.Parameters.AddWithValue("@PatientId", patientId);
+                cmd.Parameters.AddWithValue("@FullName", fullName);
+                cmd.Parameters.AddWithValue("@DoctorName", doctorName);
+                cmd.Parameters.AddWithValue("@AppointmentDateTime", appointmentDateTime);
                 cmd.Parameters.AddWithValue("@Reason", reason);
 
                 conn.Open();
@@ -49,10 +66,8 @@ namespace CommunityClinic.Data
             }
         }
 
-
         // CANCEL APPOINTMENT
-
-        public bool CancelAppointment(int Id)
+        public bool CancelAppointment(int appointmentId)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
@@ -61,52 +76,50 @@ namespace CommunityClinic.Data
                                  WHERE Id = @Id";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Id", Id);
+                cmd.Parameters.AddWithValue("@Id", appointmentId);
 
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
 
-
         // RESCHEDULE APPOINTMENT
-
-        public bool RescheduleAppointment(int Id, DateTime newDate)
+        public bool RescheduleAppointment(int appointmentId, DateTime newDateTime)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 string query = @"UPDATE Appointments
-                                 SET AppointmentDate = @Date,
+                                 SET AppointmentDateTime = @DateTime,
                                      Status = 'Rescheduled'
                                  WHERE Id = @Id";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@Date", newDate);
-                cmd.Parameters.AddWithValue("@Id", Id);
+                cmd.Parameters.AddWithValue("@DateTime", newDateTime);
+                cmd.Parameters.AddWithValue("@Id", appointmentId);
 
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
 
+        // UPDATE STATUS
         public bool UpdateStatus(int appointmentId, string status)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 string query = @"UPDATE Appointments
-                         SET Status = @Status
-                         WHERE Id = @Id";
+                                 SET Status = @Status
+                                 WHERE Id = @Id";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
+
                 cmd.Parameters.AddWithValue("@Id", appointmentId);
                 cmd.Parameters.AddWithValue("@Status", status);
 
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
-
         }
-
     }
 }
