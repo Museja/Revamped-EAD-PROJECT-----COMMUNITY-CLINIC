@@ -52,6 +52,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(519, 9);
             this.label1.Name = "label1";
@@ -62,6 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(430, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 13);
@@ -71,6 +73,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.Location = new System.Drawing.Point(430, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 13);
@@ -80,6 +83,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
             this.label4.Location = new System.Drawing.Point(431, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
@@ -89,6 +93,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
             this.label5.Location = new System.Drawing.Point(431, 162);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 13);
@@ -101,6 +106,7 @@
             this.txtFullname.Name = "txtFullname";
             this.txtFullname.Size = new System.Drawing.Size(100, 20);
             this.txtFullname.TabIndex = 5;
+            this.txtFullname.TextChanged += new System.EventHandler(this.txtFullname_TextChanged);
             // 
             // txtEmail
             // 
@@ -108,6 +114,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(100, 20);
             this.txtEmail.TabIndex = 6;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // txtPassword
             // 
@@ -115,6 +122,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
             this.txtPassword.TabIndex = 7;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtConfirmpassword
             // 
@@ -122,11 +130,12 @@
             this.txtConfirmpassword.Name = "txtConfirmpassword";
             this.txtConfirmpassword.Size = new System.Drawing.Size(100, 20);
             this.txtConfirmpassword.TabIndex = 8;
+            this.txtConfirmpassword.TextChanged += new System.EventHandler(this.txtConfirmpassword_TextChanged);
             // 
             // Register
             // 
-            this.Register.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.Register.Location = new System.Drawing.Point(445, 327);
+            this.Register.BackColor = System.Drawing.SystemColors.Control;
+            this.Register.Location = new System.Drawing.Point(585, 331);
             this.Register.Name = "Register";
             this.Register.Size = new System.Drawing.Size(75, 23);
             this.Register.TabIndex = 9;
@@ -137,36 +146,38 @@
             // radioPatient
             // 
             this.radioPatient.AutoSize = true;
+            this.radioPatient.BackColor = System.Drawing.SystemColors.Control;
             this.radioPatient.Location = new System.Drawing.Point(434, 209);
             this.radioPatient.Name = "radioPatient";
             this.radioPatient.Size = new System.Drawing.Size(58, 17);
             this.radioPatient.TabIndex = 10;
             this.radioPatient.TabStop = true;
             this.radioPatient.Text = "Patient";
-            this.radioPatient.UseVisualStyleBackColor = true;
-            //this.radioPatient.CheckedChanged += new System.EventHandler(this.radioPatient_CheckedChanged);
+            this.radioPatient.UseVisualStyleBackColor = false;
+            this.radioPatient.CheckedChanged += new System.EventHandler(this.radioPatient_CheckedChanged);
             // 
             // radioAdmin
             // 
             this.radioAdmin.AutoSize = true;
+            this.radioAdmin.BackColor = System.Drawing.SystemColors.Control;
             this.radioAdmin.Location = new System.Drawing.Point(552, 209);
             this.radioAdmin.Name = "radioAdmin";
             this.radioAdmin.Size = new System.Drawing.Size(83, 17);
             this.radioAdmin.TabIndex = 11;
             this.radioAdmin.TabStop = true;
             this.radioAdmin.Text = "Admnistrator";
-            this.radioAdmin.UseVisualStyleBackColor = true;
-            //this.radioAdmin.CheckedChanged += new System.EventHandler(this.radioAdmin_CheckedChanged);
+            this.radioAdmin.UseVisualStyleBackColor = false;
+            this.radioAdmin.CheckedChanged += new System.EventHandler(this.radioAdmin_CheckedChanged);
             // 
             // lblAdminId
             // 
             this.lblAdminId.AutoSize = true;
+            this.lblAdminId.BackColor = System.Drawing.SystemColors.Control;
             this.lblAdminId.Location = new System.Drawing.Point(436, 258);
             this.lblAdminId.Name = "lblAdminId";
             this.lblAdminId.Size = new System.Drawing.Size(84, 13);
             this.lblAdminId.TabIndex = 12;
             this.lblAdminId.Text = "Administrator ID:";
-            //this.lblAdminId.Click += new System.EventHandler(this.label6_Click);
             // 
             // txtAdminId
             // 
@@ -174,29 +185,30 @@
             this.txtAdminId.Name = "txtAdminId";
             this.txtAdminId.Size = new System.Drawing.Size(100, 20);
             this.txtAdminId.TabIndex = 13;
-            //this.txtAdminId.TextChanged += new System.EventHandler(this.AdminID_TextChanged);
+            this.txtAdminId.TextChanged += new System.EventHandler(this.txtAdminId_TextChanged);
             // 
             // radioMedicalstaff
             // 
             this.radioMedicalstaff.AutoSize = true;
+            this.radioMedicalstaff.BackColor = System.Drawing.SystemColors.Control;
             this.radioMedicalstaff.Location = new System.Drawing.Point(678, 209);
             this.radioMedicalstaff.Name = "radioMedicalstaff";
             this.radioMedicalstaff.Size = new System.Drawing.Size(87, 17);
             this.radioMedicalstaff.TabIndex = 14;
             this.radioMedicalstaff.TabStop = true;
             this.radioMedicalstaff.Text = "Medical Staff";
-            this.radioMedicalstaff.UseVisualStyleBackColor = true;
-            //this.radioMedicalstaff.CheckedChanged += new System.EventHandler(this.radioMedicalstaff_CheckedChanged);
+            this.radioMedicalstaff.UseVisualStyleBackColor = false;
+            this.radioMedicalstaff.CheckedChanged += new System.EventHandler(this.radioMedicalstaff_CheckedChanged);
             // 
             // lblMedStaff
             // 
             this.lblMedStaff.AutoSize = true;
+            this.lblMedStaff.BackColor = System.Drawing.SystemColors.Control;
             this.lblMedStaff.Location = new System.Drawing.Point(436, 286);
             this.lblMedStaff.Name = "lblMedStaff";
             this.lblMedStaff.Size = new System.Drawing.Size(86, 13);
             this.lblMedStaff.TabIndex = 15;
             this.lblMedStaff.Text = "Medical Staff ID:";
-            //this.lblMedStaff.Click += new System.EventHandler(this.lblMedStaff_Click);
             // 
             // txtMedStaff
             // 
@@ -204,12 +216,12 @@
             this.txtMedStaff.Name = "txtMedStaff";
             this.txtMedStaff.Size = new System.Drawing.Size(100, 20);
             this.txtMedStaff.TabIndex = 16;
-            //this.txtMedStaff.TextChanged += new System.EventHandler(this.txtMedStaff_TextChanged);
+            this.txtMedStaff.TextChanged += new System.EventHandler(this.txtMedStaff_TextChanged);
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.button1.Location = new System.Drawing.Point(445, 356);
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(585, 360);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 17;
@@ -244,7 +256,6 @@
             this.Controls.Add(this.label1);
             this.Name = "RegistrationForm";
             this.Text = "RegistrationForm";
-            //this.Load += new System.EventHandler(this.RegistrationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

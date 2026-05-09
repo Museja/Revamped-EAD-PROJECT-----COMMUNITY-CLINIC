@@ -217,9 +217,9 @@ namespace CommunityClinic
         // BACK BUTTON
         private void button1_Click(object sender, EventArgs e)
         {
-            //MainFormMDI form = new MainFormMDI();
-            //form.Show();
-            //this.Close();
+            StaffDashboard form = new StaffDashboard();
+            form.Show();
+            this.Close();
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -234,6 +234,71 @@ namespace CommunityClinic
             {
                 Application.Exit();
             }
+        }
+
+        private void txtItem_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDateAdded_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtExpiration_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCategory_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUnit_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBatchNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtManufacturer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSupplier_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNotes_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

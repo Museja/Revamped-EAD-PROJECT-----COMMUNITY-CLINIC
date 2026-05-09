@@ -15,8 +15,7 @@ namespace CommunityClinic
         // FORM LOAD
         private void StaffDashboard_Load(object sender, EventArgs e)
         {
-            // Show logged-in staff name
-            lblWelcome.Text = "Welcome " + SessionManager.Name;
+        
         }
 
         // INVENTORY - ADD
@@ -83,7 +82,8 @@ namespace CommunityClinic
             // Clear session
             SessionManager.UserId = 0;
             SessionManager.Name = null;
-            SessionManager.Role = 0;
+            SessionManager.Role = "Admin";
+            SessionManager.Role = "Medical Staff";
             SessionManager.Email = null;
 
             // Return to Home
@@ -97,6 +97,16 @@ namespace CommunityClinic
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

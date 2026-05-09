@@ -22,10 +22,9 @@ namespace CommunityClinic
 
         private void PatientdataForm_Load(object sender, EventArgs e)
         {
-            // optional: load data if needed
         }
 
-        // SAVE (INSERT via DAL)
+        // SAVE
         private void Save_Click(object sender, EventArgs e)
         {
             try
@@ -101,7 +100,7 @@ namespace CommunityClinic
             }
         }
 
-        // UPDATE (UPDATE via DAL)
+        // UPDATE
         private void Update_Click(object sender, EventArgs e)
         {
             try
@@ -179,6 +178,56 @@ namespace CommunityClinic
             {
                 Application.Exit();
             }
+        }
+
+        private void txtName_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDOB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAge_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhonenumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtGender_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAllergies_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtHistory_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMedications_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

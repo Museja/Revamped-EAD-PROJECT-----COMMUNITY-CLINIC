@@ -7,7 +7,7 @@ namespace CommunityClinic
 {
     public partial class StaffLogin : Form
     {
-        private UsersDAL usersDAL = new UsersDAL();
+        private RegistrationDAL usersDAL = new RegistrationDAL();
 
         public StaffLogin()
         {
@@ -22,12 +22,10 @@ namespace CommunityClinic
 
         private void EmailAddress_TextChanged(object sender, EventArgs e)
         {
-            // optional validation later
         }
 
         private void Password_TextChanged(object sender, EventArgs e)
         {
-            // optional validation later
         }
 
         private void Login_Click(object sender, EventArgs e)
@@ -41,7 +39,9 @@ namespace CommunityClinic
                 return;
             }
 
-            Users user = usersDAL.Login(email, password);
+            string role = "Admin";
+
+            Registrationclass user = usersDAL.LoginUser(email, password, role);
 
             if (user == null)
             {
@@ -50,19 +50,19 @@ namespace CommunityClinic
             }
 
             // STAFF CHECK (Role 2 = Admin, Role 3 = Medical Staff)
-            if (user.Role != 2 && user.Role != 3)
+            if (user.Role != "Admin" && user.Role != "Medical Staff")
             {
                 MessageBox.Show("Access denied. This login is for staff only.");
                 return;
             }
 
             // Store session
-            SessionManager.UserId = user.Id;
-            SessionManager.Name = user.Name;
+            //SessionManager.UserId = user.AdminID;
+            SessionManager.Name = user.FullName;
             SessionManager.Role = user.Role;
-            SessionManager.Email = user.Email;
+            SessionManager.Email = user.EmailAddress;
 
-            MessageBox.Show("Welcome " + user.Name);
+            MessageBox.Show("Welcome " + user.FullName);
 
             // OPEN STAFF DASHBOARD (MDI)
             StaffDashboard dashboard = new StaffDashboard();

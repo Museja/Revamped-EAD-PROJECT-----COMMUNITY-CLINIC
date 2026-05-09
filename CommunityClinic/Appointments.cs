@@ -87,5 +87,25 @@ namespace CommunityClinic
         {
             this.Hide();
         }
+
+        private void txtFullname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDocName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtReason_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

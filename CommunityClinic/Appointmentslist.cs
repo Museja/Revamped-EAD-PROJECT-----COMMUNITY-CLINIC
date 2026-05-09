@@ -54,5 +54,10 @@ namespace CommunityClinic
         {
             Application.Exit();
         }
+
+        private void dgvAppointments_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

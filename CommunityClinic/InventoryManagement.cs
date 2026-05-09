@@ -1,7 +1,8 @@
-﻿using System;
+﻿using CommunityClinic.Models;
+using System;
 using System.Data;
 using System.Windows.Forms;
-using CommunityClinic.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace CommunityClinic
 {
@@ -45,14 +46,14 @@ namespace CommunityClinic
                     Inventoryitems item = new Inventoryitems
                     {
                         Item = row.Cells["Item"].Value.ToString(),
-                        DateAdded = Convert.ToDateTime(row.Cells["Date_Added"].Value),
+                        Date_Added = Convert.ToDateTime(row.Cells["Date_Added"].Value),
                         Quantity = Convert.ToInt32(row.Cells["Quantity"].Value),
                         Description = row.Cells["Description"].Value.ToString(),
                         Price = Convert.ToDecimal(row.Cells["Price"].Value),
                         Expiration = Convert.ToDateTime(row.Cells["Expiration"].Value),
                         Category = row.Cells["Category"].Value.ToString(),
                         Unit = row.Cells["Unit"].Value.ToString(),
-                        BatchNumber = row.Cells["Batch"].Value.ToString(),
+                        Batch = row.Cells["Batch"].Value.ToString(),
                         Manufacturer = row.Cells["Manufacturer"].Value.ToString(),
                         Supplier = row.Cells["Supplier"].Value.ToString(),
                         Status = row.Cells["Status"].Value.ToString(),
@@ -80,7 +81,7 @@ namespace CommunityClinic
 
                 Inventoryitems item = new Inventoryitems
                 {
-                    BatchNumber = batch
+                    Batch = batch
                 };
 
                 inventoryDAL.Update(item); 
@@ -109,6 +110,39 @@ namespace CommunityClinic
             {
                 Application.Exit();
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            InventoryDAL dal = new InventoryDAL();
+
+            dgvInventory.DataSource = dal.SearchItems(txtSearch.Text.Trim());
+        }
+       
+
+        private void btnUpdate_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnExit_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

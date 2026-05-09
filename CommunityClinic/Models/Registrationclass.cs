@@ -3,11 +3,11 @@
 namespace CommunityClinic.Models
 {
     public class Registrationclass
-    { public int PatientID { get; set; }
+    {
+        public int PatientID { get; set; }
         public string FullName { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
         public string Role { get; set; }
         public string AdminID { get; set; }
         public string MedicalStaffID { get; set; }
@@ -20,24 +20,22 @@ namespace CommunityClinic.Models
         // PARAMETERIZED CONSTRUCTOR
         public Registrationclass(
             string fullName,
-            string EmailAddress,
+            string emailAddress,
             string password,
-            string confirmPassword,
             string role,
             string adminID,
             string medicalStaffID)
         {
             FullName = fullName;
-            EmailAddress = EmailAddress;
+            EmailAddress = emailAddress;
             Password = password;
-            ConfirmPassword = confirmPassword;
             Role = role;
             AdminID = adminID;
             MedicalStaffID = medicalStaffID;
         }
 
-        // VALIDATION METHOD
-        public bool IsValid(out string message)
+        // VALIDATION
+        public bool IsValid(out string message, string confirmPassword)
         {
             if (string.IsNullOrWhiteSpace(FullName))
             {
@@ -57,7 +55,7 @@ namespace CommunityClinic.Models
                 return false;
             }
 
-            if (Password != ConfirmPassword)
+            if (Password != confirmPassword)
             {
                 message = "Passwords do not match.";
                 return false;

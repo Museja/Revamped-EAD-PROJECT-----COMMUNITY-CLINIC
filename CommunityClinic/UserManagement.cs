@@ -1,7 +1,8 @@
-﻿using System;
+﻿using CommunityClinic.Models;
+using System;
 using System.Data;
+using System.Net.NetworkInformation;
 using System.Windows.Forms;
-using CommunityClinic.Models;
 
 namespace CommunityClinic
 {
@@ -23,19 +24,14 @@ namespace CommunityClinic
         // LOAD PATIENTS
         private void LoadPatients(string search = "")
         {
-            DataTable dt = patientDAL.GetAllPatients(search);
+            DataTable dt = patientDAL.SearchPatients(search);
+
             dgvUsers.DataSource = dt;
 
             dgvUsers.ReadOnly = false;
             dgvUsers.AllowUserToAddRows = false;
             dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsers.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
-        }
-
-        // SEARCH
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            LoadPatients(txtSearch.Text);
         }
 
         // UPDATE PATIENTS
@@ -45,7 +41,8 @@ namespace CommunityClinic
             {
                 foreach (DataGridViewRow row in dgvUsers.Rows)
                 {
-                    if (row.IsNewRow) continue;
+                    if (row.IsNewRow)
+                        continue;
 
                     Patient p = new Patient
                     {
@@ -75,17 +72,29 @@ namespace CommunityClinic
         }
 
         // DELETE PATIENT
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvUsers.SelectedRows.Count > 0)
+            try
             {
-                int id = Convert.ToInt32(dgvUsers.SelectedRows[0].Cells["PatientID"].Value);
+                if (dgvUsers.SelectedRows.Count > 0)
+                {
+                    int id = Convert.ToInt32(
+                        dgvUsers.SelectedRows[0].Cells["PatientID"].Value);
 
-                patientDAL.DeletePatient(id);
+                    patientDAL.DeletePatient(id);
 
-                MessageBox.Show("Patient deleted successfully.");
-                LoadPatients();
+                    MessageBox.Show("Patient deleted successfully.");
+
+                    LoadPatients();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a patient.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting patient: " + ex.Message);
             }
         }
 
@@ -108,6 +117,38 @@ namespace CommunityClinic
             {
                 Application.Exit();
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click_1(object sender, EventArgs e)
+        {
+            String search = txtSearch.Text.Trim();
+
+            // SHOW ALL PATIENTS IF SEARCH IS EMPTY
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                LoadPatients();
+                return;
+            }
+
+            // VALIDATION
+            if (search.Length < 2)
+            {
+                MessageBox.Show("Please enter at least 2 characters to search.");
+                return;
+            }
+
+            // SEARCH PATIENTS
+            LoadPatients(search);
         }
     }
 }

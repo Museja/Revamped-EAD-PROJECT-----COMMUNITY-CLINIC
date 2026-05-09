@@ -33,6 +33,8 @@
             this.btnLoadProfile = new System.Windows.Forms.Button();
             this.btnUpdateProfile = new System.Windows.Forms.Button();
             this.tabAppointments = new System.Windows.Forms.TabPage();
+            this.txtDocName = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.dtpAppointment = new System.Windows.Forms.DateTimePicker();
             this.txtReason = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -134,6 +136,7 @@
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(250, 20);
             this.txtFullName.TabIndex = 5;
+            this.txtFullName.TextChanged += new System.EventHandler(this.txtFullName_TextChanged);
             // 
             // txtPhone
             // 
@@ -141,6 +144,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(250, 20);
             this.txtPhone.TabIndex = 6;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
             // txtEmail
             // 
@@ -148,6 +152,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(250, 20);
             this.txtEmail.TabIndex = 7;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // txtAddress
             // 
@@ -155,6 +160,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(250, 20);
             this.txtAddress.TabIndex = 8;
+            this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
             // 
             // dtDOB
             // 
@@ -162,6 +168,7 @@
             this.dtDOB.Name = "dtDOB";
             this.dtDOB.Size = new System.Drawing.Size(250, 20);
             this.dtDOB.TabIndex = 9;
+            this.dtDOB.ValueChanged += new System.EventHandler(this.dtDOB_ValueChanged);
             // 
             // btnLoadProfile
             // 
@@ -172,6 +179,7 @@
             this.btnLoadProfile.TabIndex = 10;
             this.btnLoadProfile.Text = "Load Profile";
             this.btnLoadProfile.UseVisualStyleBackColor = false;
+            this.btnLoadProfile.Click += new System.EventHandler(this.btnLoadProfile_Click);
             // 
             // btnUpdateProfile
             // 
@@ -186,6 +194,8 @@
             // 
             // tabAppointments
             // 
+            this.tabAppointments.Controls.Add(this.txtDocName);
+            this.tabAppointments.Controls.Add(this.label8);
             this.tabAppointments.Controls.Add(this.dtpAppointment);
             this.tabAppointments.Controls.Add(this.txtReason);
             this.tabAppointments.Controls.Add(this.label7);
@@ -201,9 +211,25 @@
             this.tabAppointments.TabIndex = 1;
             this.tabAppointments.Text = "Appointments";
             // 
+            // txtDocName
+            // 
+            this.txtDocName.Location = new System.Drawing.Point(103, 299);
+            this.txtDocName.Name = "txtDocName";
+            this.txtDocName.Size = new System.Drawing.Size(290, 20);
+            this.txtDocName.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(20, 299);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Doctor\'s Name";
+            // 
             // dtpAppointment
             // 
-            this.dtpAppointment.Location = new System.Drawing.Point(70, 292);
+            this.dtpAppointment.Location = new System.Drawing.Point(70, 338);
             this.dtpAppointment.Name = "dtpAppointment";
             this.dtpAppointment.Size = new System.Drawing.Size(200, 20);
             this.dtpAppointment.TabIndex = 8;
@@ -218,7 +244,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 298);
+            this.label7.Location = new System.Drawing.Point(20, 344);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(30, 13);
             this.label7.TabIndex = 6;
@@ -420,5 +446,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtpAppointment;
         private System.Windows.Forms.TextBox txtReason;
+        private System.Windows.Forms.TextBox txtDocName;
+        private System.Windows.Forms.Label label8;
     }
 }

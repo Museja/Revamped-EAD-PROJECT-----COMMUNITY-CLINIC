@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.Name = new System.Windows.Forms.Label();
+            this.FullName = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,15 +53,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Schedule Appointment";
             // 
-            // Name
+            // FullName
             // 
-            this.Name.AutoSize = true;
-            this.Name.BackColor = System.Drawing.SystemColors.Control;
-            this.Name.Location = new System.Drawing.Point(406, 130);
-            this.Name.Name = "Name";
-            this.Name.Size = new System.Drawing.Size(54, 13);
-            this.Name.TabIndex = 1;
-            this.Name.Text = "Full Name";
+            this.FullName.AutoSize = true;
+            this.FullName.BackColor = System.Drawing.SystemColors.Control;
+            this.FullName.Location = new System.Drawing.Point(406, 130);
+            this.FullName.Name = "FullName";
+            this.FullName.Size = new System.Drawing.Size(54, 13);
+            this.FullName.TabIndex = 1;
+            this.FullName.Text = "Full Name";
             // 
             // dateTimePicker1
             // 
@@ -176,7 +176,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.Name);
+            this.Controls.Add(this.FullName);
             this.Controls.Add(this.label1);
             this.Name = "Appointments";
             this.Text = "Appointments";
@@ -188,7 +188,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label Name;
+        private System.Windows.Forms.Label FullName;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

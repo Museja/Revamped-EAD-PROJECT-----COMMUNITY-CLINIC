@@ -39,11 +39,10 @@
             this.appointmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.appointmentListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblWelcome = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,7 +126,7 @@
             // appointmentListToolStripMenuItem
             // 
             this.appointmentListToolStripMenuItem.Name = "appointmentListToolStripMenuItem";
-            this.appointmentListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.appointmentListToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.appointmentListToolStripMenuItem.Text = "Appointment List";
             this.appointmentListToolStripMenuItem.Click += new System.EventHandler(this.appointmentListToolStripMenuItem_Click);
             // 
@@ -139,6 +138,13 @@
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.logoutToolStripMenuItem.Text = "Logout";
             // 
+            // logoutToolStripMenuItem1
+            // 
+            this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem1.Text = "Logout";
+            this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.logoutToolStripMenuItem1_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -148,34 +154,19 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // logoutToolStripMenuItem1
-            // 
-            this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.logoutToolStripMenuItem1.Text = "Logout";
-            this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.logoutToolStripMenuItem1_Click);
-            // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
             this.exitToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
+            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
             // 
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
             this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
-            // 
-            // lblWelcome
-            // 
-            //this.lblWelcome.AutoSize = true;
-            //this.lblWelcome.Location = new System.Drawing.Point(329, 127);
-            //this.lblWelcome.Name = "lblWelcome";
-            //this.lblWelcome.Size = new System.Drawing.Size(62, 13);
-            //this.lblWelcome.TabIndex = 2;
-            //this.lblWelcome.Text = "lblWelcome";
-            //this.lblWelcome.Click += new System.EventHandler(this.lblWelcome);
+            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
             // StaffDashboard
             // 
@@ -183,7 +174,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CommunityClinic.Properties.Resources.image0;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -215,6 +205,5 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
-        private System.Windows.Forms.Label lblWelcome;
     }
 }

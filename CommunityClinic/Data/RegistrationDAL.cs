@@ -39,7 +39,7 @@ namespace CommunityClinic
             }
         }
 
-        // FIXED LOGIN METHOD
+        // LOGIN METHOD
         public Registrationclass LoginUser(string email, string password, string role)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())

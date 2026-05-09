@@ -19,7 +19,7 @@ namespace CommunityClinic
             EmailAddress.Clear();
             Password.Clear();
         }
-
+        // Event handler for the Login button click
         private void Login_Click(object sender, EventArgs e)
         {
             string email = EmailAddress.Text.Trim();
@@ -64,10 +64,20 @@ namespace CommunityClinic
                 MessageBox.Show("Login error: " + ex.Message);
             }
         }
-
+        // Event handler for the Exit button click
         private void Exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void EmailAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Password_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

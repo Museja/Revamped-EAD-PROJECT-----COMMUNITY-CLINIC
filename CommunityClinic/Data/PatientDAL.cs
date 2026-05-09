@@ -11,8 +11,9 @@ namespace CommunityClinic
         private readonly string connectionString =
             ConfigurationManager.ConnectionStrings["CommunityClinicLLOMDB"].ConnectionString;
 
-        // GET ALL PATIENTS (SEARCH)
-        public DataTable GetAllPatients(string search = "")
+        // GET ALL PATIENTS
+       
+        public DataTable GetPatients()
         {
             DataTable dt = new DataTable();
 
@@ -23,15 +24,37 @@ namespace CommunityClinic
                            PhoneNumber, EmailAddress, Gender,
                            Allergies, History, Medications
                     FROM Patients
-                    WHERE Name LIKE @Search OR EmailAddress LIKE @Search
+                    ORDER BY Name";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.Fill(dt);
+            }
+
+            return dt;
+        }
+
+        // SEARCH PATIENTS
+        public DataTable SearchPatients(string search)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+                    SELECT PatientID, Name, DateOfBirth, Age, Address,
+                           PhoneNumber, EmailAddress, Gender,
+                           Allergies, History, Medications
+                    FROM Patients
+                    WHERE Name LIKE @Search
+                       OR EmailAddress LIKE @Search
                     ORDER BY Name";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
+
                 cmd.Parameters.AddWithValue("@Search", "%" + search + "%");
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-                conn.Open();
                 da.Fill(dt);
             }
 
@@ -39,7 +62,6 @@ namespace CommunityClinic
         }
 
         // DELETE PATIENT
-
         public void DeletePatient(int patientId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -47,6 +69,7 @@ namespace CommunityClinic
                 string query = "DELETE FROM Patients WHERE PatientID = @PatientID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
+
                 cmd.Parameters.AddWithValue("@PatientID", patientId);
 
                 conn.Open();
@@ -55,15 +78,16 @@ namespace CommunityClinic
         }
 
         // ADD PATIENT
-   
         public bool AddPatient(Patient patient)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO Patients
-                                (Name, DateOfBirth, Age, Address, PhoneNumber, EmailAddress, Gender, Allergies, History, Medications)
-                                VALUES
-                                (@Name, @DateOfBirth, @Age, @Address, @PhoneNumber, @EmailAddress, @Gender, @Allergies, @History, @Medications)";
+                (Name, DateOfBirth, Age, Address, PhoneNumber,
+                 EmailAddress, Gender, Allergies, History, Medications)
+                VALUES
+                (@Name, @DateOfBirth, @Age, @Address, @PhoneNumber,
+                 @EmailAddress, @Gender, @Allergies, @History, @Medications)";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -79,32 +103,28 @@ namespace CommunityClinic
                 cmd.Parameters.AddWithValue("@Medications", patient.Medications ?? "");
 
                 conn.Open();
+
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
 
-
         // UPDATE PATIENT
-
         public bool UpdatePatient(Patient patient)
         {
-            if (patient.PatientID <= 0)
-                throw new ArgumentException("PatientID is required for update.");
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"UPDATE Patients SET
-                                    Name=@Name,
-                                    DateOfBirth=@DateOfBirth,
-                                    Age=@Age,
-                                    Address=@Address,
-                                    PhoneNumber=@PhoneNumber,
-                                    EmailAddress=@EmailAddress,
-                                    Gender=@Gender,
-                                    Allergies=@Allergies,
-                                    History=@History,
-                                    Medications=@Medications
-                                 WHERE PatientID=@PatientID";
+                    Name=@Name,
+                    DateOfBirth=@DateOfBirth,
+                    Age=@Age,
+                    Address=@Address,
+                    PhoneNumber=@PhoneNumber,
+                    EmailAddress=@EmailAddress,
+                    Gender=@Gender,
+                    Allergies=@Allergies,
+                    History=@History,
+                    Medications=@Medications
+                    WHERE PatientID=@PatientID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -121,20 +141,21 @@ namespace CommunityClinic
                 cmd.Parameters.AddWithValue("@Medications", patient.Medications ?? "");
 
                 conn.Open();
+
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
 
-
-        // GET BY ID
-  
+        // GET PATIENT BY ID
         public Patient GetPatientById(int id)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Patients WHERE PatientID=@PatientID";
+                string query =
+                    "SELECT * FROM Patients WHERE PatientID=@PatientID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
+
                 cmd.Parameters.AddWithValue("@PatientID", id);
 
                 conn.Open();

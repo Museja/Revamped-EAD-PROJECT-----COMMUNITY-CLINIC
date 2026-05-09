@@ -27,64 +27,63 @@ namespace CommunityClinic
         // REGISTER BUTTON
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            string fullName = txtFullname.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            string password = txtPassword.Text;
-            string confirmPassword = txtConfirmpassword.Text;
-            string adminId = txtAdminId.Text.Trim();
-
-            string role = "";
-
-            if (radioPatient.Checked)
-                role = "Patient";
-            else if (radioAdmin.Checked)
-                role = "Admin";
-            else if (radioMedicalstaff.Checked)
-                role = "Medical Staff";
-
-            List<string> errors = new List<string>();
-
-            // VALIDATION
-            if (string.IsNullOrWhiteSpace(fullName))
-                errors.Add("Full Name is required");
-
-            if (string.IsNullOrWhiteSpace(email))
-                errors.Add("Email is required");
-
-            if (string.IsNullOrWhiteSpace(password))
-                errors.Add("Password is required");
-            else if (password.Length < 6)
-                errors.Add("Password must be at least 6 characters");
-
-            if (password != confirmPassword)
-                errors.Add("Passwords do not match");
-
-            if (string.IsNullOrEmpty(role))
-                errors.Add("Please select a role");
-
-            if (role == "Admin")
-            {
-                if (string.IsNullOrWhiteSpace(adminId))
-                    errors.Add("Admin ID is required");
-
-                if (adminId != "12345")
-                    errors.Add("Invalid Admin ID");
-            }
-
-            if (errors.Count > 0)
-            {
-                MessageBox.Show(string.Join("\n", errors), "Validation Error");
-                return;
-            }
-
             try
             {
+                string fullName = txtFullname.Text.Trim();
+                string email = txtEmail.Text.Trim();
+                string password = txtPassword.Text;
+                string confirmPassword = txtConfirmpassword.Text;
+                string adminId = txtAdminId.Text.Trim();
+
+                string role = "";
+
+                if (radioPatient.Checked)
+                    role = "Patient";
+                else if (radioAdmin.Checked)
+                    role = "Admin";
+                else if (radioMedicalstaff.Checked)
+                    role = "Medical Staff";
+
+                List<string> errors = new List<string>();
+
+                // VALIDATION
+                if (string.IsNullOrWhiteSpace(fullName))
+                    errors.Add("Full Name is required");
+
+                if (string.IsNullOrWhiteSpace(email))
+                    errors.Add("Email is required");
+
+                if (string.IsNullOrWhiteSpace(password))
+                    errors.Add("Password is required");
+                else if (password.Length < 6)
+                    errors.Add("Password must be at least 6 characters");
+
+                if (password != confirmPassword)
+                    errors.Add("Passwords do not match");
+
+                if (string.IsNullOrEmpty(role))
+                    errors.Add("Please select a role");
+
+                if (role == "Admin")
+                {
+                    if (string.IsNullOrWhiteSpace(adminId))
+                        errors.Add("Admin ID is required");
+
+                    if (adminId != "12345")
+                        errors.Add("Invalid Admin ID");
+                }
+
+                if (errors.Count > 0)
+                {
+                    MessageBox.Show(string.Join("\n", errors), "Validation Error");
+                    return;
+                }
+
                 string passwordHash = HashPassword(password);
 
-                // FIXED DAL USAGE
                 RegistrationDAL dal = new RegistrationDAL();
 
-                UserRegistration user = new UserRegistration
+                Registrationclass user = new Registrationclass
                 {
                     FullName = fullName,
                     EmailAddress = email,
@@ -97,16 +96,19 @@ namespace CommunityClinic
 
                 if (success)
                 {
-                    //Form nextForm = (role == "Patient")
-                    //    ? new SuccessForm()
-                    //    : new MainFormMDI();
-                    //nextForm.Show();
-                    //this.Hide();
+                    Form nextForm;
 
-                    SuccessForm f = new SuccessForm();
-                    f.Show();
+                    if (role == "Patient")
+                    {
+                        nextForm = new SuccessForm();
+                    }
+                    else
+                    {
+                        nextForm = new StaffDashboard();
+                    }
+
+                    nextForm.Show();
                     this.Hide();
-                    
                 }
                 else
                 {
@@ -115,7 +117,7 @@ namespace CommunityClinic
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Unexpected error: " + ex.Message);
+                MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
 
@@ -132,6 +134,51 @@ namespace CommunityClinic
             {
                 Application.Exit();
             }
+        }
+
+        private void txtFullname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtConfirmpassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioPatient_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioAdmin_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioMedicalstaff_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAdminId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMedStaff_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

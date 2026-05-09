@@ -36,9 +36,7 @@ namespace CommunityClinic
             }
         }
 
-        // =========================
         // LOAD APPOINTMENTS
-        // =========================
         private void LoadAppointments()
         {
             try
@@ -104,6 +102,7 @@ namespace CommunityClinic
         // BOOK APPOINTMENT
         private void btnBookAppointment_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 if (string.IsNullOrWhiteSpace(txtReason.Text))
@@ -114,6 +113,8 @@ namespace CommunityClinic
 
                 bool success = appointmentDAL.BookAppointment(
                     patientId,
+                    patientDAL.GetPatientById(patientId).Name,
+                    txtDocName.Text.Trim(),                    
                     dtpAppointment.Value,
                     txtReason.Text.Trim()
                 );
@@ -220,7 +221,32 @@ namespace CommunityClinic
             this.Close();
         }
 
-        private void btnLoadPrescriptions_Click(object sender, EventArgs e)
+        private void txtFullName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtDOB_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLoadProfile_Click(object sender, EventArgs e)
         {
 
         }

@@ -83,6 +83,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 3;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged_1);
             // 
             // txtDOB
             // 
@@ -90,6 +91,7 @@
             this.txtDOB.Name = "txtDOB";
             this.txtDOB.Size = new System.Drawing.Size(100, 20);
             this.txtDOB.TabIndex = 4;
+            this.txtDOB.TextChanged += new System.EventHandler(this.txtDOB_TextChanged);
             // 
             // txtAge
             // 
@@ -97,6 +99,7 @@
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(100, 20);
             this.txtAge.TabIndex = 5;
+            this.txtAge.TextChanged += new System.EventHandler(this.txtAge_TextChanged);
             // 
             // txtAddress
             // 
@@ -104,6 +107,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(100, 20);
             this.txtAddress.TabIndex = 6;
+            this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
             // 
             // txtPhonenumber
             // 
@@ -111,6 +115,7 @@
             this.txtPhonenumber.Name = "txtPhonenumber";
             this.txtPhonenumber.Size = new System.Drawing.Size(100, 20);
             this.txtPhonenumber.TabIndex = 7;
+            this.txtPhonenumber.TextChanged += new System.EventHandler(this.txtPhonenumber_TextChanged);
             // 
             // txtEmail
             // 
@@ -118,6 +123,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(100, 20);
             this.txtEmail.TabIndex = 8;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // txtGender
             // 
@@ -125,6 +131,7 @@
             this.txtGender.Name = "txtGender";
             this.txtGender.Size = new System.Drawing.Size(100, 20);
             this.txtGender.TabIndex = 9;
+            this.txtGender.TextChanged += new System.EventHandler(this.txtGender_TextChanged);
             // 
             // txtAllergies
             // 
@@ -132,6 +139,7 @@
             this.txtAllergies.Name = "txtAllergies";
             this.txtAllergies.Size = new System.Drawing.Size(100, 20);
             this.txtAllergies.TabIndex = 10;
+            this.txtAllergies.TextChanged += new System.EventHandler(this.txtAllergies_TextChanged);
             // 
             // txtHistory
             // 
@@ -139,6 +147,7 @@
             this.txtHistory.Name = "txtHistory";
             this.txtHistory.Size = new System.Drawing.Size(100, 20);
             this.txtHistory.TabIndex = 11;
+            this.txtHistory.TextChanged += new System.EventHandler(this.txtHistory_TextChanged);
             // 
             // txtMedications
             // 
@@ -146,6 +155,7 @@
             this.txtMedications.Name = "txtMedications";
             this.txtMedications.Size = new System.Drawing.Size(100, 20);
             this.txtMedications.TabIndex = 12;
+            this.txtMedications.TextChanged += new System.EventHandler(this.txtMedications_TextChanged);
             // 
             // label1
             // 
@@ -264,6 +274,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.BackgroundImage = global::CommunityClinic.Properties.Resources.image0;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

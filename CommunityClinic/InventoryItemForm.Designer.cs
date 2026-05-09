@@ -229,6 +229,7 @@
             this.txtDateAdded.Name = "txtDateAdded";
             this.txtDateAdded.Size = new System.Drawing.Size(100, 20);
             this.txtDateAdded.TabIndex = 16;
+            this.txtDateAdded.TextChanged += new System.EventHandler(this.txtDateAdded_TextChanged);
             // 
             // txtQuantity
             // 
@@ -236,6 +237,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(100, 20);
             this.txtQuantity.TabIndex = 17;
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // txtDescription
             // 
@@ -243,6 +245,7 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(100, 20);
             this.txtDescription.TabIndex = 18;
+            this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             // 
             // txtPrice
             // 
@@ -250,6 +253,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(100, 20);
             this.txtPrice.TabIndex = 19;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // txtExpiration
             // 
@@ -257,6 +261,7 @@
             this.txtExpiration.Name = "txtExpiration";
             this.txtExpiration.Size = new System.Drawing.Size(100, 20);
             this.txtExpiration.TabIndex = 20;
+            this.txtExpiration.TextChanged += new System.EventHandler(this.txtExpiration_TextChanged);
             // 
             // txtCategory
             // 
@@ -264,6 +269,7 @@
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(100, 20);
             this.txtCategory.TabIndex = 21;
+            this.txtCategory.TextChanged += new System.EventHandler(this.txtCategory_TextChanged);
             // 
             // txtUnit
             // 
@@ -271,6 +277,7 @@
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Size = new System.Drawing.Size(100, 20);
             this.txtUnit.TabIndex = 22;
+            this.txtUnit.TextChanged += new System.EventHandler(this.txtUnit_TextChanged);
             // 
             // txtBatchNumber
             // 
@@ -278,6 +285,7 @@
             this.txtBatchNumber.Name = "txtBatchNumber";
             this.txtBatchNumber.Size = new System.Drawing.Size(100, 20);
             this.txtBatchNumber.TabIndex = 23;
+            this.txtBatchNumber.TextChanged += new System.EventHandler(this.txtBatchNumber_TextChanged);
             // 
             // txtManufacturer
             // 
@@ -285,6 +293,7 @@
             this.txtManufacturer.Name = "txtManufacturer";
             this.txtManufacturer.Size = new System.Drawing.Size(100, 20);
             this.txtManufacturer.TabIndex = 24;
+            this.txtManufacturer.TextChanged += new System.EventHandler(this.txtManufacturer_TextChanged);
             // 
             // txtSupplier
             // 
@@ -292,6 +301,7 @@
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(100, 20);
             this.txtSupplier.TabIndex = 25;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.txtSupplier_TextChanged);
             // 
             // txtStatus
             // 
@@ -299,6 +309,7 @@
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(100, 20);
             this.txtStatus.TabIndex = 26;
+            this.txtStatus.TextChanged += new System.EventHandler(this.txtStatus_TextChanged);
             // 
             // txtNotes
             // 
@@ -306,6 +317,7 @@
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.Size = new System.Drawing.Size(100, 20);
             this.txtNotes.TabIndex = 27;
+            this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
             // txtItem
             // 
@@ -314,6 +326,7 @@
             this.txtItem.Name = "txtItem";
             this.txtItem.Size = new System.Drawing.Size(100, 20);
             this.txtItem.TabIndex = 28;
+            this.txtItem.TextChanged += new System.EventHandler(this.txtItem_TextChanged);
             // 
             // button1
             // 
