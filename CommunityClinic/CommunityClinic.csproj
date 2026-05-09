@@ -76,7 +76,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommunityClinicLLOMDBDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Data\UsersDAL.cs" />
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,7 +119,6 @@
     <Compile Include="Data\PatientDAL.cs" />
     <Compile Include="Models\Registrationclass.cs" />
     <Compile Include="Models\SessionManager.cs" />
-    <Compile Include="Models\Users.cs" />
     <Compile Include="PatientdataForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -276,7 +276,6 @@
     <Compile Include="Models\MedicalHistoryWeb.cs" />
     <Compile Include="Models\PatientWeb.cs" />
     <Compile Include="Models\RegistrationWeb.cs" />
-    <Compile Include="Models\UsersWeb.cs" />
     <Compile Include="PatientForm.aspx.cs">
       <DependentUpon>PatientForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -311,7 +310,6 @@
     <Compile Include="Services\MedicalHistoryService.cs" />
     <Compile Include="Services\PatientService.cs" />
     <Compile Include="Services\RegistrationService.cs" />
-    <Compile Include="Services\UsersWebService.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -2,33 +2,41 @@
 
 namespace CommunityClinic.Models
 {
-    public class UserRegistration
-    {
-        // Properties
+    public class Registrationclass
+    { public int PatientID { get; set; }
         public string FullName { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string Role { get; set; }
         public string AdminID { get; set; }
-        public string MedicalStaffId { get; set; }
+        public string MedicalStaffID { get; set; }
 
-        // ADD THIS (fixes your error)
-        public UserRegistration()
+        // DEFAULT CONSTRUCTOR
+        public Registrationclass()
         {
         }
 
-        // Constructor with parameters 
-        public UserRegistration(string fullName, string emailAddress, string password, string confirmPassword, string role, string adminID)
+        // PARAMETERIZED CONSTRUCTOR
+        public Registrationclass(
+            string fullName,
+            string EmailAddress,
+            string password,
+            string confirmPassword,
+            string role,
+            string adminID,
+            string medicalStaffID)
         {
             FullName = fullName;
-            EmailAddress = emailAddress;
+            EmailAddress = EmailAddress;
             Password = password;
             ConfirmPassword = confirmPassword;
             Role = role;
             AdminID = adminID;
+            MedicalStaffID = medicalStaffID;
         }
 
+        // VALIDATION METHOD
         public bool IsValid(out string message)
         {
             if (string.IsNullOrWhiteSpace(FullName))
@@ -55,9 +63,15 @@ namespace CommunityClinic.Models
                 return false;
             }
 
-            if (Role == "Administrator" && string.IsNullOrWhiteSpace(AdminID))
+            if (Role == "Admin" && string.IsNullOrWhiteSpace(AdminID))
             {
-                message = "Administrator ID is required for admins.";
+                message = "Admin ID is required for Admin users.";
+                return false;
+            }
+
+            if (Role == "Medical Staff" && string.IsNullOrWhiteSpace(MedicalStaffID))
+            {
+                message = "Medical Staff ID is required.";
                 return false;
             }
 

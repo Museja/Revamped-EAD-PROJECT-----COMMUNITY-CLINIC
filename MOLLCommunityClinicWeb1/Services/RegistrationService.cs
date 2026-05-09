@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using MOLLCommunityClinicWeb1.Models;
 
 namespace MOLLCommunityClinicWeb1.Services
@@ -41,7 +39,47 @@ namespace MOLLCommunityClinicWeb1.Services
             }
         }
 
+        // LOGIN USER  ✔ NEW METHOD
+     
+        public RegistrationWeb LoginUser(string email, string hashedPassword, string role)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT * 
+                                 FROM Registration
+                                 WHERE EmailAddress = @Email
+                                 AND Password = @Password
+                                 AND Role = @Role";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                cmd.Parameters.AddWithValue("@Role", role);
+
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new RegistrationWeb
+                    {
+                        FullName = reader["FullName"].ToString(),
+                        EmailAddress = reader["EmailAddress"].ToString(),
+                        Password = reader["Password"].ToString(),
+                        Role = reader["Role"].ToString(),
+                        AdminID = reader["AdminID"].ToString(),
+                        MedStaffID = reader["MedStaffID"].ToString()
+                    };
+                }
+            }
+
+            return null;
+        }
+
         // GET USER BY EMAIL
+
         public RegistrationWeb GetUserByEmail(string email)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -58,7 +96,6 @@ namespace MOLLCommunityClinicWeb1.Services
                 {
                     return new RegistrationWeb
                     {
-                        PatientID = Convert.ToInt32(reader["PatientID"]),
                         FullName = reader["FullName"].ToString(),
                         EmailAddress = reader["EmailAddress"].ToString(),
                         Password = reader["Password"].ToString(),

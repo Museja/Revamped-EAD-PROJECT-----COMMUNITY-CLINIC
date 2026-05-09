@@ -8,8 +8,8 @@ namespace MOLLCommunityClinicWeb1
 {
     public partial class StaffLogin : System.Web.UI.Page
     {
-        // CREATE SERVICE OBJECT
-        UsersWebService userService = new UsersWebService();
+        // SERVICE OBJECT
+        RegistrationService registrationService = new RegistrationService();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,18 +21,17 @@ namespace MOLLCommunityClinicWeb1
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            // VALIDATE EMPTY FIELDS
-            if (string.IsNullOrEmpty(email) ||
-                string.IsNullOrEmpty(password))
+            // VALIDATE INPUT
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 lblMessage.Text = "Please enter email and password.";
                 return;
             }
 
-            // GET ROLE
-            int roleId = GetRole();
+            // GET ROLE FROM RADIO BUTTONS (STRING NOW)
+            string role = GetRole();
 
-            if (roleId == 0)
+            if (string.IsNullOrEmpty(role))
             {
                 lblMessage.Text = "Please select a role.";
                 return;
@@ -41,27 +40,28 @@ namespace MOLLCommunityClinicWeb1
             // HASH PASSWORD
             string hashedPassword = HashPassword(password);
 
-            // LOGIN USING SERVICE
-            UsersWeb user =
-                userService.Login(email, hashedPassword, roleId);
+            // LOGIN
+            RegistrationService service = new RegistrationService();
 
-            // CHECK LOGIN
+            RegistrationWeb user =
+                service.LoginUser(email, hashedPassword, role);
             if (user != null)
             {
-                // STORE SESSION VALUES
-                Session["UserId"] = user.Id;
-                Session["Name"] = user.Name;
+                // SESSION VALUES
+                Session["UserId"] = user.PatientID;
+                Session["Name"] = user.FullName;
                 Session["Role"] = user.Role;
 
                 // REDIRECT BASED ON ROLE
-                if (user.Role == 2)
+                if (role == "Admin")
                 {
-                    Response.Redirect("~/AdminDashboard.aspx");
+                    Response.Redirect("~/StaffDashboard.aspx");
                 }
-                else if (user.Role == 3)
+                else if (role == "Medical Staff")
                 {
-                    Response.Redirect("~/MedicalStaffDashboard.aspx");
+                    Response.Redirect("~/StaffDashboard.aspx");
                 }
+               
             }
             else
             {
@@ -69,26 +69,24 @@ namespace MOLLCommunityClinicWeb1
             }
         }
 
-        // ROLE METHOD
-        private int GetRole()
+        // ROLE FROM RADIO BUTTONS
+        private string GetRole()
         {
             if (radioAdmin.Checked)
-                return 2;
+                return "Admin";
 
             if (radioMedicalStaff.Checked)
-                return 3;
+                return "Medical Staff";
 
-            return 0;
+            return "";
         }
 
-        // HASH PASSWORD METHOD
+        // HASH PASSWORD
         private string HashPassword(string password)
         {
             using (SHA256 sha = SHA256.Create())
             {
-                byte[] bytes =
-                    sha.ComputeHash(Encoding.UTF8.GetBytes(password));
-
+                byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
                 return Convert.ToBase64String(bytes);
             }
         }

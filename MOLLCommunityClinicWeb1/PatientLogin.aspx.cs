@@ -8,7 +8,7 @@ namespace MOLLCommunityClinicWeb1
 {
     public partial class PatientLogin : System.Web.UI.Page
     {
-        UsersWebService userService = new UsersWebService();
+        RegistrationService userService = new RegistrationService();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,14 +31,16 @@ namespace MOLLCommunityClinicWeb1
 
             string hashedPassword = HashPassword(password);
 
-            UsersWeb user =
-                userService.Login(email, hashedPassword, roleId);
+            RegistrationService service = new RegistrationService();
+
+            RegistrationWeb user =
+                service.LoginUser(email, hashedPassword, "Patient");
 
             if (user != null)
             {
                 // SESSION
-                Session["UserId"] = user.Id;
-                Session["Name"] = user.Name;
+                Session["UserId"] = user.PatientID;
+                Session["Name"] = user.FullName;
                 Session["Role"] = user.Role;
 
                 // REDIRECT TO PATIENT PORTAL

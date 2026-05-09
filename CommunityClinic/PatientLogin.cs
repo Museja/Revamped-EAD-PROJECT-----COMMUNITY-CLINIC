@@ -7,7 +7,7 @@ namespace CommunityClinic
 {
     public partial class PatientLogin : Form
     {
-        private UsersDAL usersDAL = new UsersDAL();
+        private RegistrationDAL usersDAL = new RegistrationDAL();
 
         public PatientLogin()
         {
@@ -16,19 +16,8 @@ namespace CommunityClinic
 
         private void PatientLogin_Load(object sender, EventArgs e)
         {
-            // clear fields on load
             EmailAddress.Clear();
             Password.Clear();
-        }
-
-        private void EmailAddress_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void Password_TextChanged(object sender, EventArgs e)
-        {
-          
         }
 
         private void Login_Click(object sender, EventArgs e)
@@ -42,33 +31,38 @@ namespace CommunityClinic
                 return;
             }
 
-            Users user = usersDAL.Login(email, password);
-
-            if (user == null)
+            try
             {
-                MessageBox.Show("Invalid login or account is locked.");
-                return;
-            }
+                Registrationclass user =
+                    usersDAL.LoginUser(email, password, "Patient");
 
-            // Patient ONLY check (Role = 1)
-            if (user.Role != 1)
+                if (user == null)
+                {
+                    MessageBox.Show("Invalid login or account is locked.");
+                    return;
+                }
+
+                if (user.Role != "Patient")
+                {
+                    MessageBox.Show("Access denied. Patients only.");
+                    return;
+                }
+
+                SessionManager.UserId = user.PatientID;
+                SessionManager.Name = user.FullName;
+                SessionManager.Role = user.Role;
+
+                MessageBox.Show("Welcome " + user.FullName);
+
+                PatientPortalForm portal = new PatientPortalForm();
+                portal.Show();
+
+                this.Hide();
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Access denied. This login is for patients only.");
-                return;
+                MessageBox.Show("Login error: " + ex.Message);
             }
-
-            // Store session
-            SessionManager.UserId = user.Id;
-            SessionManager.Name = user.Name;
-            SessionManager.Role = user.Role;
-
-            MessageBox.Show("Welcome " + user.Name);
-
-            // OPEN PATIENT PORTAL
-            PatientPortalForm portal = new PatientPortalForm();
-            portal.Show();
-
-            this.Hide();
         }
 
         private void Exit_Click(object sender, EventArgs e)

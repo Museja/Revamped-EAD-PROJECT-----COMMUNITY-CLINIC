@@ -13,7 +13,7 @@ namespace CommunityClinic.Models
 
             public static string Name { get; set; }
 
-            public static int Role { get; set; }
+            public static string Role { get; set; }
 
             public static string Email { get; set; }
     }

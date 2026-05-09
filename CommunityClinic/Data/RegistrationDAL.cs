@@ -7,15 +7,15 @@ namespace CommunityClinic
 {
     public class RegistrationDAL
     {
-        // Insert new user
-        public bool InsertUser(UserRegistration user)
+        // INSERT USER
+        public bool InsertUser(Registrationclass user)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 string query = @"INSERT INTO Registration
-                (FullName, EmailAddress, Password, Role, AdminID)
+                (FullName, EmailAddress, Password, Role, AdminID, MedStaffID)
                 VALUES
-                (@FullName, @EmailAddress, @Password, @Role, @AdminID)";
+                (@FullName, @EmailAddress, @Password, @Role, @AdminID, @MedStaffID)";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -24,29 +24,64 @@ namespace CommunityClinic
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 cmd.Parameters.AddWithValue("@Role", user.Role);
 
-                // Handle NULL AdminID (for Patients)
-                if (string.IsNullOrWhiteSpace(user.AdminID))
-                    cmd.Parameters.AddWithValue("@AdminID", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@AdminID", user.AdminID);
+                cmd.Parameters.AddWithValue("@AdminID",
+                    string.IsNullOrWhiteSpace(user.AdminID)
+                        ? (object)DBNull.Value
+                        : user.AdminID);
+
+                cmd.Parameters.AddWithValue("@MedStaffID",
+                    string.IsNullOrWhiteSpace(user.MedicalStaffID)
+                        ? (object)DBNull.Value
+                        : user.MedicalStaffID);
 
                 conn.Open();
-                //return cmd.ExecuteNonQuery() > 0;
-                cmd.ExecuteNonQuery();
-                
+                return cmd.ExecuteNonQuery() > 0;
             }
-
-            return true;
         }
 
-        // Get all users
+        // FIXED LOGIN METHOD
+        public Registrationclass LoginUser(string email, string password, string role)
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                string query = @"SELECT * FROM Registration
+                                 WHERE EmailAddress=@Email
+                                 AND Password=@Password
+                                 AND Role=@Role";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+                cmd.Parameters.AddWithValue("@Role", role);
+
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new Registrationclass
+                    {
+                        PatientID = Convert.ToInt32(reader["Id"]),
+                        FullName = reader["FullName"].ToString(),
+                        EmailAddress = reader["EmailAddress"].ToString(),
+                        Password = reader["Password"].ToString(),
+                        Role = reader["Role"].ToString()
+                    };
+                }
+            }
+
+            return null;
+        }
+
+        // GET ALL USERS
         public DataTable GetAllUsers()
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 string query = "SELECT * FROM Registration";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
 
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
@@ -54,8 +89,8 @@ namespace CommunityClinic
             }
         }
 
-        // Updates user
-        public void UpdateUser(UserRegistration user, int id)
+        // UPDATE USER
+        public void UpdateUser(Registrationclass user, int id)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
@@ -64,7 +99,7 @@ namespace CommunityClinic
                     EmailAddress=@EmailAddress,
                     Password=@Password,
                     Role=@Role,
-                    AdminID=@AdminID
+                    AdminID=@AdminID,
                     MedStaffID=@MedStaffID
                     WHERE Id=@Id";
 
@@ -76,18 +111,22 @@ namespace CommunityClinic
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 cmd.Parameters.AddWithValue("@Role", user.Role);
 
-                if (string.IsNullOrWhiteSpace(user.AdminID))
-                    cmd.Parameters.AddWithValue("@AdminID", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@AdminID", user.AdminID);
+                cmd.Parameters.AddWithValue("@AdminID",
+                    string.IsNullOrWhiteSpace(user.AdminID)
+                        ? (object)DBNull.Value
+                        : user.AdminID);
+
+                cmd.Parameters.AddWithValue("@MedStaffID",
+                    string.IsNullOrWhiteSpace(user.MedicalStaffID)
+                        ? (object)DBNull.Value
+                        : user.MedicalStaffID);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
-             
             }
         }
 
-        // Deletes user
+        // DELETE USER
         public void DeleteUser(int id)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -102,6 +141,7 @@ namespace CommunityClinic
             }
         }
 
+        // EMAIL CHECK
         public bool EmailExists(string email)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -112,8 +152,8 @@ namespace CommunityClinic
                 cmd.Parameters.AddWithValue("@Email", email);
 
                 conn.Open();
-                int count = (int)cmd.ExecuteScalar();
 
+                int count = (int)cmd.ExecuteScalar();
                 return count > 0;
             }
         }
