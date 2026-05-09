@@ -17,12 +17,11 @@ namespace MOLLCommunityClinicWeb1
         {
             try
             {
-                PatientWeb patient = new PatientWeb
+                PatientWeb Patient = new PatientWeb
                 {
                     Name = txtFullName.Text,
                     EmailAddress = txtEmail.Text,
-                    DateOfBirth = Convert.ToDateTime(txtDOB.Text),
-                    Age = Convert.ToInt32(txtAge.Text),
+                    DateOfBirth = txtDOB.Text,
                     Gender = ddlGender.SelectedValue,
                     PhoneNumber = txtPhone.Text,
                     Address = txtAddress.Text,
@@ -31,7 +30,7 @@ namespace MOLLCommunityClinicWeb1
                     History = txtHistory.Text
                 };
 
-                patientService.AddPatient(patient);
+                patientService.AddPatient(Patient);
 
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = "Patient saved successfully.";

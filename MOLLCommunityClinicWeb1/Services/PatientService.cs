@@ -13,35 +13,35 @@ namespace MOLLCommunityClinicWeb1.Services
         private readonly string connectionString =
            ConfigurationManager.ConnectionStrings["CommunityClinicLLOMDB"].ConnectionString;
 
-        // ✔ ADD PATIENT
-        public void AddPatient(PatientWeb patient)
+        // ADD PATIENT
+        public void AddPatient(PatientWeb Patient)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO Patients
-                (FullName, DOB, Age, Gender, Phone, Address, Allergies, MedicalHistory, Medications, Email)
+                string query = @"INSERT INTO Patient
+                (Name, DOB, Age, Gender, Phone, Address, Allergies, History, Medications, Email)
                 VALUES
                 (@FullName, @DOB, @Age, @Gender, @Phone, @Address, @Allergies, @MedicalHistory, @Medications, @Email)";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@FullName", patient.Name);
-                cmd.Parameters.AddWithValue("@DOB", patient.DateOfBirth);
-                cmd.Parameters.AddWithValue("@Age", patient.Age);
-                cmd.Parameters.AddWithValue("@Gender", patient.Gender);
-                cmd.Parameters.AddWithValue("@Phone", patient.PhoneNumber);
-                cmd.Parameters.AddWithValue("@Address", patient.Address);
-                cmd.Parameters.AddWithValue("@Allergies", patient.Allergies ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@MedicalHistory", patient.History ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Medications", patient.Medications ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Email", patient.EmailAddress ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@FullName", Patient.Name);
+                cmd.Parameters.AddWithValue("@DOB", Patient.DateOfBirth);
+                cmd.Parameters.AddWithValue("@Age", Patient.Age);
+                cmd.Parameters.AddWithValue("@Gender", Patient.Gender);
+                cmd.Parameters.AddWithValue("@Phone", Patient.PhoneNumber);
+                cmd.Parameters.AddWithValue("@Address", Patient.Address);
+                cmd.Parameters.AddWithValue("@Allergies", Patient.Allergies ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@MedicalHistory", Patient.History ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Medications", Patient.Medications ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Email", Patient.EmailAddress ?? (object)DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        // ✔ GET ALL PATIENTS
+        //  GET ALL PATIENTS
         public List<PatientWeb> GetAllPatients()
         {
             List<PatientWeb> patients = new List<PatientWeb>();
@@ -77,7 +77,7 @@ namespace MOLLCommunityClinicWeb1.Services
             return patients;
         }
 
-        // ✔ SEARCH PATIENTS
+        // SEARCH PATIENTS
         public List<PatientWeb> SearchPatients(string keyword)
         {
             List<PatientWeb> patients = new List<PatientWeb>();
@@ -122,7 +122,7 @@ namespace MOLLCommunityClinicWeb1.Services
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM Patients WHERE Id = @Id";
+                string query = "DELETE FROM Patient WHERE Id = @Id";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
@@ -132,12 +132,12 @@ namespace MOLLCommunityClinicWeb1.Services
             }
         }
 
-        // ✔ UPDATE PATIENT (optional but recommended)
-        public void UpdatePatient(PatientWeb patient)
+        // UPDATE PATIENT (optional but recommended)
+        public void UpdatePatient(PatientWeb Patient)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"UPDATE Patients SET
+                string query = @"UPDATE Patient SET
                                 FullName = @FullName,
                                 DOB = @DOB,
                                 Age = @Age,
@@ -152,17 +152,17 @@ namespace MOLLCommunityClinicWeb1.Services
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@Id", patient.PatientID);
-                cmd.Parameters.AddWithValue("@FullName", patient.Name);
-                cmd.Parameters.AddWithValue("@DOB", patient.DateOfBirth);
-                cmd.Parameters.AddWithValue("@Age", patient.Age);
-                cmd.Parameters.AddWithValue("@Gender", patient.Gender);
-                cmd.Parameters.AddWithValue("@Phone", patient.PhoneNumber);
-                cmd.Parameters.AddWithValue("@Address", patient.Address);
-                cmd.Parameters.AddWithValue("@Allergies", patient.Allergies ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@MedicalHistory", patient.History ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Medications", patient.Medications ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Email", patient.EmailAddress ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Id", Patient.PatientID);
+                cmd.Parameters.AddWithValue("@FullName", Patient.Name);
+                cmd.Parameters.AddWithValue("@DOB", Patient.DateOfBirth);
+                cmd.Parameters.AddWithValue("@Age", Patient.Age);
+                cmd.Parameters.AddWithValue("@Gender", Patient.Gender);
+                cmd.Parameters.AddWithValue("@Phone", Patient.PhoneNumber);
+                cmd.Parameters.AddWithValue("@Address", Patient.Address);
+                cmd.Parameters.AddWithValue("@Allergies", Patient.Allergies ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@MedicalHistory", Patient.History ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Medications", Patient.Medications ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Email", Patient.EmailAddress ?? (object)DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();

@@ -75,5 +75,10 @@ namespace MOLLCommunityClinicWeb1
             if (radioMedicalstaff.Checked) return "Medical Staff";
             return "";
         }
+
+        protected void btnExit_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
     }
 }
