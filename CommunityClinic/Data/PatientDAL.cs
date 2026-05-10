@@ -91,11 +91,11 @@ namespace CommunityClinic
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@Name", patient.Name);
-                cmd.Parameters.AddWithValue("@DOB", patient.DateOfBirth);
+                cmd.Parameters.AddWithValue("@DOB", patient.DOB);
                 cmd.Parameters.AddWithValue("@Age", patient.Age);
                 cmd.Parameters.AddWithValue("@Address", patient.Address);
-                cmd.Parameters.AddWithValue("@Phone", patient.PhoneNumber);
-                cmd.Parameters.AddWithValue("@Email", patient.EmailAddress);
+                cmd.Parameters.AddWithValue("@Phone", patient.Phone);
+                cmd.Parameters.AddWithValue("@Email", patient.Email);
                 cmd.Parameters.AddWithValue("@Gender", patient.Gender);
                 cmd.Parameters.AddWithValue("@Allergies", patient.Allergies ?? "");
                 cmd.Parameters.AddWithValue("@History", patient.History ?? "");
@@ -129,11 +129,11 @@ namespace CommunityClinic
 
                 cmd.Parameters.AddWithValue("@PatientID", patient.PatientID);
                 cmd.Parameters.AddWithValue("@Name", patient.Name);
-                cmd.Parameters.AddWithValue("@DOB", patient.DateOfBirth);
+                cmd.Parameters.AddWithValue("@DOB", patient.DOB);
                 cmd.Parameters.AddWithValue("@Age", patient.Age);
                 cmd.Parameters.AddWithValue("@Address", patient.Address);
-                cmd.Parameters.AddWithValue("@Phone", patient.PhoneNumber);
-                cmd.Parameters.AddWithValue("@Email", patient.EmailAddress);
+                cmd.Parameters.AddWithValue("@Phone", patient.Phone);
+                cmd.Parameters.AddWithValue("@Email", patient.Email);
                 cmd.Parameters.AddWithValue("@Gender", patient.Gender);
                 cmd.Parameters.AddWithValue("@Allergies", patient.Allergies ?? "");
                 cmd.Parameters.AddWithValue("@History", patient.History ?? "");
@@ -167,11 +167,11 @@ namespace CommunityClinic
                         {
                             PatientID = Convert.ToInt32(reader["PatientID"]),
                             Name = reader["Name"].ToString(),
-                            DateOfBirth = Convert.ToDateTime(reader["DOB"]),
+                            DOB = Convert.ToDateTime(reader["DOB"]),
                             Age = Convert.ToInt32(reader["Age"]),
                             Address = reader["Address"].ToString(),
-                            PhoneNumber = reader["Phone"].ToString(),
-                            EmailAddress = reader["Email"].ToString(),
+                            Phone = reader["Phone"].ToString(),
+                            Email = reader["Email"].ToString(),
                             Gender = reader["Gender"].ToString(),
                             Allergies = reader["Allergies"].ToString(),
                             History = reader["History"].ToString(),
