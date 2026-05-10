@@ -22,20 +22,20 @@ namespace MOLLCommunityClinicWeb1
                 (Item, Date_Added, Quantity, Description, Price, Expiration,
                  Category, Unit, Batch, Manufacturer, Supplier, Status, Notes)
                 VALUES
-                (@Item, @DateAdded, @Quantity, @Description, @Price, @Expiration,
-                 @Category, @Unit, @BatchNumber, @Manufacturer, @Supplier, @Status, @Notes)";
+                (@Item, @Date_Added, @Quantity, @Description, @Price, @Expiration,
+                 @Category, @Unit, @Batch, @Manufacturer, @Supplier, @Status, @Notes)";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@Item", item.Item);
-                cmd.Parameters.AddWithValue("@DateAdded", item.Date_Added);
+                cmd.Parameters.AddWithValue("@Date_Added", item.Date_Added);
                 cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
                 cmd.Parameters.AddWithValue("@Description", item.Description);
                 cmd.Parameters.AddWithValue("@Price", item.Price);
                 cmd.Parameters.AddWithValue("@Expiration", item.Expiration);
                 cmd.Parameters.AddWithValue("@Category", item.Category);
                 cmd.Parameters.AddWithValue("@Unit", item.Unit);
-                cmd.Parameters.AddWithValue("@BatchNumber", item.Batch);
+                cmd.Parameters.AddWithValue("@Batch", item.Batch);
                 cmd.Parameters.AddWithValue("@Manufacturer", item.Manufacturer);
                 cmd.Parameters.AddWithValue("@Supplier", item.Supplier);
                 cmd.Parameters.AddWithValue("@Status", item.Status);
@@ -66,14 +66,14 @@ namespace MOLLCommunityClinicWeb1
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Item = reader["Item"].ToString(),
-                        Date_Added = Convert.ToDateTime(reader["DateAdded"]),
+                        Date_Added = Convert.ToDateTime(reader["Date_Added"]),
                         Quantity = Convert.ToInt32(reader["Quantity"]),
                         Description = reader["Description"].ToString(),
                         Price = Convert.ToDecimal(reader["Price"]),
                         Expiration = Convert.ToDateTime(reader["Expiration"]),
                         Category = reader["Category"].ToString(),
                         Unit = reader["Unit"].ToString(),
-                        Batch = reader["BatchNumber"].ToString(),
+                        Batch = reader["Batch"].ToString(),
                         Manufacturer = reader["Manufacturer"].ToString(),
                         Supplier = reader["Supplier"].ToString(),
                         Status = reader["Status"].ToString(),
@@ -111,14 +111,14 @@ namespace MOLLCommunityClinicWeb1
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Item = reader["Item"].ToString(),
-                        Date_Added = Convert.ToDateTime(reader["DateAdded"]),
+                        Date_Added = Convert.ToDateTime(reader["Date_Added"]),
                         Quantity = Convert.ToInt32(reader["Quantity"]),
                         Description = reader["Description"].ToString(),
                         Price = Convert.ToDecimal(reader["Price"]),
                         Expiration = Convert.ToDateTime(reader["Expiration"]),
                         Category = reader["Category"].ToString(),
                         Unit = reader["Unit"].ToString(),
-                        Batch = reader["BatchNumber"].ToString(),
+                        Batch = reader["Batch"].ToString(),
                         Manufacturer = reader["Manufacturer"].ToString(),
                         Supplier = reader["Supplier"].ToString(),
                         Status = reader["Status"].ToString(),
@@ -162,7 +162,7 @@ namespace MOLLCommunityClinicWeb1
                 cmd.Parameters.AddWithValue("@Expiration", item.Expiration);
                 cmd.Parameters.AddWithValue("@Category", item.Category);
                 cmd.Parameters.AddWithValue("@Unit", item.Unit);
-                cmd.Parameters.AddWithValue("@BatchNumber", item.Batch);
+                cmd.Parameters.AddWithValue("@Batch", item.Batch);
                 cmd.Parameters.AddWithValue("@Manufacturer", item.Manufacturer);
                 cmd.Parameters.AddWithValue("@Supplier", item.Supplier);
                 cmd.Parameters.AddWithValue("@Status", item.Status);

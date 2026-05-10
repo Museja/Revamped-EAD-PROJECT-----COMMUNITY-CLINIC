@@ -130,6 +130,7 @@
     <Content Include="Inventorylist.aspx" />
     <Content Include="InventoryManagement.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="MedicalHistory.aspx" />
     <Content Include="PatientForm.aspx" />
     <Content Include="PatientList.aspx" />
     <Content Include="PatientLogin.aspx" />
@@ -270,6 +271,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalHistory.aspx.cs">
+      <DependentUpon>MedicalHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedicalHistory.aspx.designer.cs">
+      <DependentUpon>MedicalHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Appointmentsweb.cs" />
     <Compile Include="Models\Inventory1.cs" />

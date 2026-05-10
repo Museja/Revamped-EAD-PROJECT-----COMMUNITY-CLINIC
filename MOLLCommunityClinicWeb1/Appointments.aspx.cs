@@ -18,7 +18,7 @@ namespace MOLLCommunityClinicWeb1
                 Appointmentsweb appt = new Appointmentsweb
                 {
                     PatientId = Convert.ToInt32(txtPatientId.Text),
-                    AppointmentDate = Convert.ToDateTime(txtDate.Text),
+                    AppointmentDateTime = Convert.ToDateTime(txtDate.Text),
                     Reason = txtReason.Text,
                     Status = ddlStatus.SelectedValue
                 };

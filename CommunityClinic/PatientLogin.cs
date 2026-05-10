@@ -79,5 +79,12 @@ namespace CommunityClinic
         {
 
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            EmailAddress.Clear();   // clears the email field
+            Password.Clear();   // clears the password field
+            EmailAddress.Focus();   // puts cursor back in the email box
+        }
     }
 }

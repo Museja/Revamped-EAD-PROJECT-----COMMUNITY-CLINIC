@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.InventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,9 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusStripMDI = new System.Windows.Forms.StatusStrip();
+            this.notifyIconMDI = new System.Windows.Forms.NotifyIcon(this.components);
+            this.medicalHistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,7 +122,8 @@
             // appointmentsToolStripMenuItem
             // 
             this.appointmentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.appointmentListToolStripMenuItem});
+            this.appointmentListToolStripMenuItem,
+            this.medicalHistToolStripMenuItem});
             this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
             this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.appointmentsToolStripMenuItem.Text = "Appointments";
@@ -126,7 +131,7 @@
             // appointmentListToolStripMenuItem
             // 
             this.appointmentListToolStripMenuItem.Name = "appointmentListToolStripMenuItem";
-            this.appointmentListToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.appointmentListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.appointmentListToolStripMenuItem.Text = "Appointment List";
             this.appointmentListToolStripMenuItem.Click += new System.EventHandler(this.appointmentListToolStripMenuItem_Click);
             // 
@@ -141,7 +146,7 @@
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.logoutToolStripMenuItem1.Text = "Logout";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.logoutToolStripMenuItem1_Click);
             // 
@@ -152,12 +157,11 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
             // 
@@ -166,14 +170,34 @@
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
             this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
-            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
+            // 
+            // StatusStripMDI
+            // 
+            this.StatusStripMDI.Location = new System.Drawing.Point(0, 470);
+            this.StatusStripMDI.Name = "StatusStripMDI";
+            this.StatusStripMDI.Size = new System.Drawing.Size(800, 22);
+            this.StatusStripMDI.TabIndex = 3;
+            this.StatusStripMDI.Text = "statusStrip1";
+            this.StatusStripMDI.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.StatusStripMDI_ItemClicked);
+            // 
+            // notifyIconMDI
+            // 
+            this.notifyIconMDI.Text = "notifyIcon1";
+            this.notifyIconMDI.Visible = true;
+            // 
+            // medicalHistToolStripMenuItem
+            // 
+            this.medicalHistToolStripMenuItem.Name = "medicalHistToolStripMenuItem";
+            this.medicalHistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.medicalHistToolStripMenuItem.Text = "Medical History";
+            this.medicalHistToolStripMenuItem.Click += new System.EventHandler(this.medicalHistToolStripMenuItem_Click);
             // 
             // StaffDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::CommunityClinic.Properties.Resources.image0;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 492);
+            this.Controls.Add(this.StatusStripMDI);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -205,5 +229,8 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip StatusStripMDI;
+        private System.Windows.Forms.NotifyIcon notifyIconMDI;
+        private System.Windows.Forms.ToolStripMenuItem medicalHistToolStripMenuItem;
     }
 }

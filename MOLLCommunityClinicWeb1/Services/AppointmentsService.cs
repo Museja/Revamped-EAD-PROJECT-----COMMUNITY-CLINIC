@@ -26,7 +26,7 @@ namespace MOLLCommunityClinicWeb1.Services
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@PatientId", appointment.PatientId);
-                cmd.Parameters.AddWithValue("@AppointmentDate", appointment.AppointmentDate);
+                cmd.Parameters.AddWithValue("@AppointmentDate", appointment.AppointmentDateTime);
                 cmd.Parameters.AddWithValue("@Reason", appointment.Reason);
                 cmd.Parameters.AddWithValue("@Status", appointment.Status);
 
@@ -55,7 +55,7 @@ namespace MOLLCommunityClinicWeb1.Services
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         PatientId = Convert.ToInt32(reader["PatientId"]),
-                        AppointmentDate = Convert.ToDateTime(reader["AppointmentDate"]),
+                        AppointmentDateTime = Convert.ToDateTime(reader["AppointmentDate"]),
                         Reason = reader["Reason"].ToString(),
                         Status = reader["Status"].ToString()
                     });
@@ -74,7 +74,7 @@ namespace MOLLCommunityClinicWeb1.Services
             {
                 string query = @"SELECT * FROM Appointments
                                  WHERE PatientId = @PatientId
-                                 ORDER BY AppointmentDate DESC";
+                                 ORDER BY AppointmentDateTime DESC";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@PatientId", patientId);
@@ -88,7 +88,7 @@ namespace MOLLCommunityClinicWeb1.Services
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         PatientId = Convert.ToInt32(reader["PatientId"]),
-                        AppointmentDate = Convert.ToDateTime(reader["AppointmentDate"]),
+                        AppointmentDateTime = Convert.ToDateTime(reader["AppointmentDate"]),
                         Reason = reader["Reason"].ToString(),
                         Status = reader["Status"].ToString()
                     });

@@ -65,7 +65,7 @@ namespace MOLLCommunityClinicWeb1
         // BACK
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Dashboard.aspx");
+            Response.Redirect("~/StaffDashboard.aspx");
         }
 
         // EXIT

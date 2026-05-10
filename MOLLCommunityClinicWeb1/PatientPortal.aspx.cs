@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using MOLLCommunityClinicWeb1.Models;
 using MOLLCommunityClinicWeb1.Services;
 
@@ -13,7 +14,7 @@ namespace MOLLCommunityClinicWeb1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] == null)
+            if (Session["UserEmail"] == null)
             {
                 Response.Redirect("~/PatientLogin.aspx");
                 return;
@@ -25,7 +26,7 @@ namespace MOLLCommunityClinicWeb1
             }
         }
 
-        // LOAD ALL DATA
+        //LOAD ALL
         private void LoadAllData()
         {
             LoadPatientData();
@@ -36,89 +37,90 @@ namespace MOLLCommunityClinicWeb1
         // PROFILE
         private void LoadPatientData()
         {
-            int patientId = Convert.ToInt32(Session["UserId"]);
+            string email = Session["UserEmail"].ToString();
 
-            var patients = patientService.GetAllPatients();
-            var patient = patients.FirstOrDefault(p => p.PatientID == patientId);
+            var patient = patientService.GetPatientByEmail(email);
 
             if (patient != null)
             {
-                txtFullName.Text = patient.Name;
-                txtEmail.Text = patient.Email;
-                txtPhone.Text = patient.Phone;
-                txtAddress.Text = patient.Address;
+                gvProfile.DataSource = new[] { patient };
+                gvProfile.DataBind();
             }
         }
 
-        //  APPOINTMENTS
-        private void LoadAppointments()
+        // EDIT PROFILE
+        protected void gvProfile_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            int patientId = Convert.ToInt32(Session["UserId"]);
-
-            var appointments = appointmentService.GetByPatientId(patientId);
-
-            gvAppointments.DataSource = appointments;
-            gvAppointments.DataBind();
+            gvProfile.EditIndex = e.NewEditIndex;
+            LoadPatientData();
         }
 
-        // MEDICAL HISTORY 
-        private void LoadMedicalHistory()
+        protected void gvProfile_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            try
-            {
-                int patientId = Convert.ToInt32(Session["UserId"]);
-
-                MedicalHistoryService historyService =
-                    new MedicalHistoryService();
-
-                var history =
-                    historyService.GetByPatientId(patientId);
-
-                gvHistory.DataSource = history;
-                gvHistory.DataBind();
-            }
-            catch (Exception ex)
-            {
-                lblMessages.Text =
-                    "Error loading medical history: " + ex.Message;
-            }
+            gvProfile.EditIndex = -1;
+            LoadPatientData();
         }
 
-        // SAVE PROFILE
-        protected void btnSave_Click(object sender, EventArgs e)
+        protected void gvProfile_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            int patientId = Convert.ToInt32(Session["UserId"]);
+            int patientId = Convert.ToInt32(gvProfile.DataKeys[e.RowIndex].Value);
+            GridViewRow row = gvProfile.Rows[e.RowIndex];
 
             PatientWeb patient = new PatientWeb
             {
                 PatientID = patientId,
-                Name = txtFullName.Text,
-                Email = txtEmail.Text,
-                Phone = txtPhone.Text,
-                Address = txtAddress.Text
+                Name = ((TextBox)row.Cells[1].Controls[0]).Text,
+                Email = ((TextBox)row.Cells[2].Controls[0]).Text,
+                Phone = ((TextBox)row.Cells[3].Controls[0]).Text,
+                Address = ((TextBox)row.Cells[4].Controls[0]).Text
             };
 
             patientService.UpdatePatient(patient);
 
+            gvProfile.EditIndex = -1;
+            LoadPatientData();
+
             lblMessages.Text = "Profile updated successfully.";
         }
 
-        // BOOK APPOINTMENT
+        // APPOINTMENTS
+        private void LoadAppointments()
+        {
+            int patientId = Convert.ToInt32(Session["UserId"]);
+
+            gvAppointments.DataSource = appointmentService.GetByPatientId(patientId);
+            gvAppointments.DataBind();
+        }
+
+        //  MEDICAL HISTORY
+        private void LoadMedicalHistory()
+        {
+            int patientId = Convert.ToInt32(Session["UserId"]);
+
+            MedicalHistoryService service = new MedicalHistoryService();
+
+            gvHistory.DataSource = service.GetByPatientId(patientId);
+            gvHistory.DataBind();
+        }
+
+        // BOOK 
         protected void btnBook_Click(object sender, EventArgs e)
         {
             int patientId = Convert.ToInt32(Session["UserId"]);
 
-            Appointmentsweb appointment = new Appointmentsweb
+            if (!DateTime.TryParse(txtNewDate.Text, out DateTime date))
+            {
+                lblMessages.Text = "Invalid date.";
+                return;
+            }
+
+            appointmentService.BookAppointment(new Appointmentsweb
             {
                 PatientId = patientId,
-                AppointmentDate = DateTime.Parse(txtNewDate.Text),
+                AppointmentDateTime = date,
                 Reason = "New Appointment",
                 Status = "Pending"
-            };
-
-            appointmentService.BookAppointment(appointment);
-
-            lblMessages.Text = "Appointment booked successfully.";
+            });
 
             LoadAppointments();
         }
@@ -126,37 +128,34 @@ namespace MOLLCommunityClinicWeb1
         // RESCHEDULE
         protected void btnReschedule_Click(object sender, EventArgs e)
         {
-            int appointmentId = Convert.ToInt32(txtAppointmentId.Text);
-
-            appointmentService.UpdateStatus(appointmentId, "Rescheduled");
-
-            lblMessages.Text = "Appointment rescheduled.";
-            LoadAppointments();
+            if (int.TryParse(txtAppointmentId.Text, out int id))
+            {
+                appointmentService.UpdateStatus(id, "Rescheduled");
+                LoadAppointments();
+            }
         }
 
-        //  CANCEL
+        //CANCEL
         protected void btnCancelAppointment_Click(object sender, EventArgs e)
         {
-            int appointmentId = Convert.ToInt32(txtAppointmentId.Text);
-
-            appointmentService.UpdateStatus(appointmentId, "Cancelled");
-
-            lblMessages.Text = "Appointment cancelled.";
-            LoadAppointments();
+            if (int.TryParse(txtAppointmentId.Text, out int id))
+            {
+                appointmentService.UpdateStatus(id, "Cancelled");
+                LoadAppointments();
+            }
         }
 
-        //  RELOAD
+        // RELOAD
         protected void btnLoad_Click(object sender, EventArgs e)
         {
             LoadAllData();
         }
 
-        // LOGOUT
+       // LOGOUT
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Clear();
             Session.Abandon();
-
             Response.Redirect("~/PatientLogin.aspx");
         }
     }

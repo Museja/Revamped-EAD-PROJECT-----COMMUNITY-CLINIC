@@ -63,6 +63,16 @@ namespace CommunityClinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Copy_of_Untitled_Design__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Copy of Untitled Design (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap image0 {
             get {
                 object obj = ResourceManager.GetObject("image0", resourceCulture);

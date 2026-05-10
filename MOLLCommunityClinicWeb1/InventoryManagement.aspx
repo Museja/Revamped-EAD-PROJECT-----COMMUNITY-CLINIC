@@ -70,4 +70,10 @@ Category:
     CssClass="btn btn-danger"
     OnClick="btnDelete_Click" />
 
+    <asp:Button ID="btnBack" runat="server"
+    Text="Back"
+    CssClass="btn btn-secondary"
+    OnClick="btnBack_Click"
+    Style="margin-left:10px;" />
+
 </asp:Content>

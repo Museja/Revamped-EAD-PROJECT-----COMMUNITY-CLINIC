@@ -52,7 +52,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(519, 9);
             this.label1.Name = "label1";
@@ -63,7 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.Control;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(430, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 13);
@@ -73,7 +73,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.Control;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(430, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 13);
@@ -83,7 +83,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(431, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
@@ -93,7 +93,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.Control;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(431, 162);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 13);
@@ -134,7 +134,7 @@
             // 
             // Register
             // 
-            this.Register.BackColor = System.Drawing.SystemColors.Control;
+            this.Register.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.Register.Location = new System.Drawing.Point(585, 331);
             this.Register.Name = "Register";
             this.Register.Size = new System.Drawing.Size(75, 23);
@@ -146,7 +146,7 @@
             // radioPatient
             // 
             this.radioPatient.AutoSize = true;
-            this.radioPatient.BackColor = System.Drawing.SystemColors.Control;
+            this.radioPatient.BackColor = System.Drawing.Color.Transparent;
             this.radioPatient.Location = new System.Drawing.Point(434, 209);
             this.radioPatient.Name = "radioPatient";
             this.radioPatient.Size = new System.Drawing.Size(58, 17);
@@ -159,7 +159,7 @@
             // radioAdmin
             // 
             this.radioAdmin.AutoSize = true;
-            this.radioAdmin.BackColor = System.Drawing.SystemColors.Control;
+            this.radioAdmin.BackColor = System.Drawing.Color.Transparent;
             this.radioAdmin.Location = new System.Drawing.Point(552, 209);
             this.radioAdmin.Name = "radioAdmin";
             this.radioAdmin.Size = new System.Drawing.Size(83, 17);
@@ -172,7 +172,7 @@
             // lblAdminId
             // 
             this.lblAdminId.AutoSize = true;
-            this.lblAdminId.BackColor = System.Drawing.SystemColors.Control;
+            this.lblAdminId.BackColor = System.Drawing.Color.Transparent;
             this.lblAdminId.Location = new System.Drawing.Point(436, 258);
             this.lblAdminId.Name = "lblAdminId";
             this.lblAdminId.Size = new System.Drawing.Size(84, 13);
@@ -190,7 +190,7 @@
             // radioMedicalstaff
             // 
             this.radioMedicalstaff.AutoSize = true;
-            this.radioMedicalstaff.BackColor = System.Drawing.SystemColors.Control;
+            this.radioMedicalstaff.BackColor = System.Drawing.Color.Transparent;
             this.radioMedicalstaff.Location = new System.Drawing.Point(678, 209);
             this.radioMedicalstaff.Name = "radioMedicalstaff";
             this.radioMedicalstaff.Size = new System.Drawing.Size(87, 17);
@@ -203,7 +203,7 @@
             // lblMedStaff
             // 
             this.lblMedStaff.AutoSize = true;
-            this.lblMedStaff.BackColor = System.Drawing.SystemColors.Control;
+            this.lblMedStaff.BackColor = System.Drawing.Color.Transparent;
             this.lblMedStaff.Location = new System.Drawing.Point(436, 286);
             this.lblMedStaff.Name = "lblMedStaff";
             this.lblMedStaff.Size = new System.Drawing.Size(86, 13);
@@ -220,7 +220,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.button1.Location = new System.Drawing.Point(585, 360);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -235,6 +235,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 544);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtMedStaff);

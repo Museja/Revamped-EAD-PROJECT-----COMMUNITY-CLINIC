@@ -17,7 +17,7 @@ namespace MOLLCommunityClinicWeb1
         {
             try
             {
-                PatientWeb Patient = new PatientWeb
+                PatientWeb patient = new PatientWeb
                 {
                     Name = txtFullName.Text,
                     Email = txtEmail.Text,
@@ -30,10 +30,9 @@ namespace MOLLCommunityClinicWeb1
                     History = txtHistory.Text
                 };
 
-                patientService.AddPatient(Patient);
+                patientService.AddPatient(patient);
 
-                lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text = "Patient saved successfully.";
+                Response.Redirect("~/PatientPortal.aspx");
             }
             catch (Exception ex)
             {
@@ -41,6 +40,7 @@ namespace MOLLCommunityClinicWeb1
                 lblMessage.Text = "Error saving patient: " + ex.Message;
             }
         }
+
 
         // CLEAR FORM
         protected void btnClear_Click(object sender, EventArgs e)

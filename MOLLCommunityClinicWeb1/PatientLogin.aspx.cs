@@ -20,38 +20,31 @@ namespace MOLLCommunityClinicWeb1
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            if (string.IsNullOrEmpty(email) ||
-                string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 lblMessage.Text = "Please enter email and password.";
                 return;
             }
 
-            int roleId = 1; // PATIENT ONLY
-
             string hashedPassword = HashPassword(password);
 
             RegistrationService service = new RegistrationService();
 
-            RegistrationWeb user =
-                service.LoginUser(email, hashedPassword, "Patient");
+            RegistrationWeb user = service.LoginUser(email, hashedPassword, "Patient");
 
             if (user != null)
             {
-                // SESSION
                 Session["UserId"] = user.PatientID;
-                Session["Name"] = user.FullName;
-                Session["Role"] = user.Role;
+                Session["UserEmail"] = user.EmailAddress;
 
-                // REDIRECT TO PATIENT PORTAL
                 Response.Redirect("~/PatientPortal.aspx");
-            }
+           
+        }
             else
             {
                 lblMessage.Text = "Invalid patient login credentials.";
             }
         }
-
         private string HashPassword(string password)
         {
             using (SHA256 sha = SHA256.Create())

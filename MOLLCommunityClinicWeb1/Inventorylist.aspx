@@ -54,7 +54,7 @@ Inherits="MOLLCommunityClinicWeb1.Inventorylist" %>
             <asp:BoundField DataField="Item"
                 HeaderText="Item Name" />
 
-            <asp:BoundField DataField="DateAdded"
+            <asp:BoundField DataField="Date_Added"
                 HeaderText="Date Added"
                 DataFormatString="{0:yyyy-MM-dd}" />
 
@@ -78,7 +78,7 @@ Inherits="MOLLCommunityClinicWeb1.Inventorylist" %>
             <asp:BoundField DataField="Unit"
                 HeaderText="Unit" />
 
-            <asp:BoundField DataField="BatchNumber"
+            <asp:BoundField DataField="Batch"
                 HeaderText="Batch Number" />
 
             <asp:BoundField DataField="Manufacturer"

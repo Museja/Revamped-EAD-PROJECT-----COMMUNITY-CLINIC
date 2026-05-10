@@ -6,67 +6,89 @@ Inherits="MOLLCommunityClinicWeb1.PatientList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Patient List</h2>
+    <h2>Patient List</h2>
 
-<asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+    <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
 
-<br /><br />
+    <br /><br />
 
-<!-- SEARCH BAR -->
-Search Patient:
-<asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" />
+    <!-- SEARCH BAR -->
+    <label>Search Patient:</label>
 
-<br />
+    <asp:TextBox ID="txtSearch"
+        runat="server"
+        CssClass="form-control">
+    </asp:TextBox>
 
-<asp:Button ID="btnSearch" runat="server"
-    Text="Search"
-    CssClass="btn btn-primary"
-    OnClick="btnSearch_Click" />
+    <br />
 
-<asp:Button ID="btnRefresh" runat="server"
-    Text="Refresh"
-    CssClass="btn btn-info"
-    OnClick="btnRefresh_Click"
-    Style="margin-left:10px;" />
+    <asp:Button ID="btnSearch"
+        runat="server"
+        Text="Search"
+        CssClass="btn btn-primary"
+        OnClick="btnSearch_Click" />
 
-<br /><br />
+    <asp:Button ID="btnRefresh"
+        runat="server"
+        Text="Refresh"
+        CssClass="btn btn-info"
+        OnClick="btnRefresh_Click"
+        Style="margin-left:10px;" />
 
-<!-- GRID VIEW -->
-<asp:GridView ID="gvPatients" runat="server"
-    CssClass="table table-bordered"
-    AutoGenerateColumns="False">
+    <br /><br />
 
-    <Columns>
+    <!-- GRIDVIEW -->
+    <asp:GridView ID="gvPatients"
+        runat="server"
+        AutoGenerateColumns="False"
+        DataKeyNames="PatientID"
+        CssClass="table table-bordered table-striped">
 
-        <asp:BoundField DataField="ID" HeaderText="ID" />
-        <asp:BoundField DataField="Name" HeaderText="Full Name" />
-        <asp:BoundField DataField="DOB" HeaderText="Date of Birth" />
-        <asp:BoundField DataField="Age" HeaderText="Age" />
-        <asp:BoundField DataField="Gender" HeaderText="Gender" />
-        <asp:BoundField DataField="Phone" HeaderText="Phone" />
-        <asp:BoundField DataField="Address" HeaderText="Address" />
-        <asp:BoundField DataField="Allergies" HeaderText="Allergies" />
-        <asp:BoundField DataField="MedicalHistory" HeaderText="Medical History" />
-        <asp:BoundField DataField="Medications" HeaderText="Medications" />
-        <asp:BoundField DataField="Email" HeaderText="Email" />
+        <Columns>
 
-    </Columns>
+            <asp:BoundField DataField="PatientID" HeaderText="Patient ID" />
 
-</asp:GridView>
+            <asp:BoundField DataField="Name" HeaderText="Full Name" />
 
-<br />
+            <asp:BoundField DataField="DOB"
+                HeaderText="Date of Birth"
+                DataFormatString="{0:yyyy-MM-dd}" />
 
-<!-- ACTION BUTTONS -->
+            <asp:BoundField DataField="Age" HeaderText="Age" />
 
-<asp:Button ID="btnBack" runat="server"
-    Text="Back"
-    CssClass="btn btn-secondary"
-    OnClick="btnBack_Click" />
+            <asp:BoundField DataField="Gender" HeaderText="Gender" />
 
-<asp:Button ID="btnExit" runat="server"
-    Text="Exit"
-    CssClass="btn btn-danger"
-    OnClick="btnExit_Click"
-    Style="margin-left:10px;" />
+            <asp:BoundField DataField="Phone" HeaderText="Phone" />
+
+            <asp:BoundField DataField="Address" HeaderText="Address" />
+
+            <asp:BoundField DataField="Allergies" HeaderText="Allergies" />
+
+            <asp:BoundField DataField="History" HeaderText="Medical History" />
+
+            <asp:BoundField DataField="Medications" HeaderText="Medications" />
+
+            <asp:BoundField DataField="Email" HeaderText="Email" />
+
+        </Columns>
+
+    </asp:GridView>
+
+    <br />
+
+    <!-- ACTION BUTTONS -->
+
+    <asp:Button ID="btnBack"
+        runat="server"
+        Text="Back"
+        CssClass="btn btn-secondary"
+        OnClick="btnBack_Click" />
+
+    <asp:Button ID="btnExit"
+        runat="server"
+        Text="Exit"
+        CssClass="btn btn-danger"
+        OnClick="btnExit_Click"
+        Style="margin-left:10px;" />
 
 </asp:Content>

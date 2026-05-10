@@ -35,11 +35,13 @@
             this.EmailAddress = new System.Windows.Forms.TextBox();
             this.Password = new System.Windows.Forms.TextBox();
             this.Exit = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(524, 58);
             this.label1.Name = "label1";
@@ -50,6 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(489, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
@@ -59,6 +62,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(492, 181);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
@@ -68,7 +72,7 @@
             // Login
             // 
             this.Login.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.Login.Location = new System.Drawing.Point(603, 248);
+            this.Login.Location = new System.Drawing.Point(589, 232);
             this.Login.Name = "Login";
             this.Login.Size = new System.Drawing.Size(75, 23);
             this.Login.TabIndex = 3;
@@ -95,7 +99,7 @@
             // Exit
             // 
             this.Exit.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.Exit.Location = new System.Drawing.Point(603, 286);
+            this.Exit.Location = new System.Drawing.Point(682, 232);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(75, 23);
             this.Exit.TabIndex = 6;
@@ -103,12 +107,25 @@
             this.Exit.UseVisualStyleBackColor = false;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnClear.Location = new System.Drawing.Point(487, 232);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 7;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // PatientLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CommunityClinic.Properties.Resources.image0;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.Password);
             this.Controls.Add(this.EmailAddress);
@@ -133,5 +150,6 @@
         private System.Windows.Forms.TextBox EmailAddress;
         private System.Windows.Forms.TextBox Password;
         private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Button btnClear;
     }
 }

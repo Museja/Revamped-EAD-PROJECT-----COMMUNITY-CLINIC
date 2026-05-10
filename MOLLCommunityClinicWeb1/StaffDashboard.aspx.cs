@@ -6,25 +6,37 @@ namespace MOLLCommunityClinicWeb1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] == null)
+            // 1. CHECK LOGIN FIRST
+            if (Session["UserId"] == null || Session["Role"] == null)
             {
                 Response.Redirect("~/StaffLogin.aspx");
                 return;
             }
 
-            if (!IsPostBack)
-            {
-                lblName.Text = Session["Name"].ToString();
-            }
-
+            // 2. ROLE CHECK
             int role = Convert.ToInt32(Session["Role"]);
 
             if (role != 2 && role != 3)
             {
                 Response.Redirect("~/StaffLogin.aspx");
+                return;
+            }
+
+            // 3. SET NAME ONLY ON FIRST LOAD
+            if (!IsPostBack)
+            {
+                if (Session["Name"] != null)
+                {
+                    lblName.Text = Session["Name"].ToString();
+                }
+                else
+                {
+                    lblName.Text = "Staff";
+                }
             }
         }
 
+        // LOGOUT BUTTON
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Clear();

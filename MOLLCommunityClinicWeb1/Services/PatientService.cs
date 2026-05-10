@@ -14,30 +14,34 @@ namespace MOLLCommunityClinicWeb1.Services
            ConfigurationManager.ConnectionStrings["CommunityClinicLLOMDB"].ConnectionString;
 
         // ADD PATIENT
-        public void AddPatient(PatientWeb Patient)
+        public int AddPatient(PatientWeb Patient)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO Patient
-                (Name, DOB, Age, Gender, Phone, Address, Allergies, History, Medications, Email)
-                VALUES
-                (@FullName, @DOB, @Age, @Gender, @Phone, @Address, @Allergies, @MedicalHistory, @Medications, @Email)";
+        (Name, DOB, Age, Gender, Phone, Address, Allergies, History, Medications, Email)
+        OUTPUT INSERTED.PatientID
+        VALUES
+        (@Name, @DOB, @Age, @Gender, @Phone, @Address, @Allergies, @History, @Medications, @Email)";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@FullName", Patient.Name);
+                cmd.Parameters.AddWithValue("@Name", Patient.Name);
                 cmd.Parameters.AddWithValue("@DOB", Patient.DOB);
                 cmd.Parameters.AddWithValue("@Age", Patient.Age);
                 cmd.Parameters.AddWithValue("@Gender", Patient.Gender);
                 cmd.Parameters.AddWithValue("@Phone", Patient.Phone);
                 cmd.Parameters.AddWithValue("@Address", Patient.Address);
                 cmd.Parameters.AddWithValue("@Allergies", Patient.Allergies ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@MedicalHistory", Patient.History ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@History", Patient.History ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Medications", Patient.Medications ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Email", Patient.Email ?? (object)DBNull.Value);
 
                 conn.Open();
-                cmd.ExecuteNonQuery();
+
+                int newPatientId = (int)cmd.ExecuteScalar();
+
+                return newPatientId;
             }
         }
 
@@ -59,15 +63,15 @@ namespace MOLLCommunityClinicWeb1.Services
                 {
                     patients.Add(new PatientWeb
                     {
-                        PatientID = Convert.ToInt32(reader["Id"]),
-                        Name = reader["FullName"].ToString(),
+                        PatientID = Convert.ToInt32(reader["PatientID"]),
+                        Name = reader["Name"].ToString(),
                         DOB = Convert.ToDateTime(reader["DOB"]),
                         Age = Convert.ToInt32(reader["Age"]),
                         Gender = reader["Gender"].ToString(),
                         Phone = reader["Phone"].ToString(),
                         Address = reader["Address"].ToString(),
                         Allergies = reader["Allergies"].ToString(),
-                        History = reader["MedicalHistory"].ToString(),
+                        History = reader["History"].ToString(),
                         Medications = reader["Medications"].ToString(),
                         Email = reader["Email"].ToString()
                     });
@@ -99,15 +103,15 @@ namespace MOLLCommunityClinicWeb1.Services
                 {
                     Patient.Add(new PatientWeb
                     {
-                        PatientID = Convert.ToInt32(reader["Id"]),
-                        Name = reader["FullName"].ToString(),
+                        PatientID = Convert.ToInt32(reader["PatientID"]),
+                        Name = reader["Name"].ToString(),
                         DOB = Convert.ToDateTime(reader["DOB"]),
                         Age = Convert.ToInt32(reader["Age"]),
                         Gender = reader["Gender"].ToString(),
                         Phone = reader["Phone"].ToString(),
                         Address = reader["Address"].ToString(),
                         Allergies = reader["Allergies"].ToString(),
-                        History = reader["MedicalHistory"].ToString(),
+                        History = reader["History"].ToString(),
                         Medications = reader["Medications"].ToString(),
                         Email = reader["Email"].ToString()
                     });
@@ -122,10 +126,10 @@ namespace MOLLCommunityClinicWeb1.Services
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM Patient WHERE Id = @Id";
+                string query = "DELETE FROM Patient WHERE PatientID = @PatientID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@PatientID", id);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -148,25 +152,61 @@ namespace MOLLCommunityClinicWeb1.Services
                                 History = @History,
                                 Medications = @Medications,
                                 Email = @Email
-                                WHERE Id = @Id";
+                                WHERE PatientID = @PatientID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@Id", Patient.PatientID);
-                cmd.Parameters.AddWithValue("@FullName", Patient.Name);
+                cmd.Parameters.AddWithValue("@PatientID", Patient.PatientID);
+                cmd.Parameters.AddWithValue("@Name", Patient.Name);
                 cmd.Parameters.AddWithValue("@DOB", Patient.DOB);
                 cmd.Parameters.AddWithValue("@Age", Patient.Age);
                 cmd.Parameters.AddWithValue("@Gender", Patient.Gender);
                 cmd.Parameters.AddWithValue("@Phone", Patient.Phone);
                 cmd.Parameters.AddWithValue("@Address", Patient.Address);
                 cmd.Parameters.AddWithValue("@Allergies", Patient.Allergies ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@MedicalHistory", Patient.History ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@History", Patient.History ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Medications", Patient.Medications ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Email", Patient.Email ?? (object)DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public PatientWeb GetPatientByEmail(string email)
+        {
+            PatientWeb patient = null;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Patient WHERE Email = @Email";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    patient = new PatientWeb
+                    {
+                        PatientID = Convert.ToInt32(reader["PatientID"]),
+                        Name = reader["Name"].ToString(),
+                        DOB = Convert.ToDateTime(reader["DOB"]),
+                        Age = Convert.ToInt32(reader["Age"]),
+                        Gender = reader["Gender"].ToString(),
+                        Phone = reader["Phone"].ToString(),
+                        Address = reader["Address"].ToString(),
+                        Allergies = reader["Allergies"].ToString(),
+                        History = reader["History"].ToString(),
+                        Medications = reader["Medications"].ToString(),
+                        Email = reader["Email"].ToString()
+                    };
+                }
+            }
+
+            return patient;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace MOLLCommunityClinicWeb1.Models
 
         public int PatientId { get; set; }
 
-        public DateTime AppointmentDate { get; set; }
+        public DateTime AppointmentDateTime { get; set; }
 
         public string Reason { get; set; }
 

@@ -14,7 +14,6 @@
 
 <hr />
 
-<!-- ================= MENU ================= -->
 <div class="menu-container">
 
     <h3>📊 Dashboard Menu</h3>
@@ -52,7 +51,7 @@
     <asp:HyperLink ID="lnkUserManagement"
         runat="server"
         NavigateUrl="~/UserManagement.aspx">
-        ➤ Manage Patients (Edit / Delete)
+        ➤ User Management (Patients)
     </asp:HyperLink>
 
     <br />
@@ -72,6 +71,17 @@
         runat="server"
         NavigateUrl="~/AppointmentsList.aspx">
         ➤ View Appointments
+    </asp:HyperLink>
+
+    <hr />
+
+    <!-- MEDICAL HISTORY -->
+    <h4>📄 Medical History</h4>
+
+    <asp:HyperLink ID="lnkMedicalHistory"
+        runat="server"
+        NavigateUrl="~/MedicalHistory.aspx">
+        ➤ View Medical History (Coming Soon)
     </asp:HyperLink>
 
     <hr />

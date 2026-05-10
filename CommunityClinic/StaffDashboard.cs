@@ -12,6 +12,33 @@ namespace CommunityClinic
             InitializeComponent();
         }
 
+        private void OpenChildForm(Form childForm)
+
+        {
+
+            foreach (Form frm in this.MdiChildren)
+
+            {
+
+                if (frm.GetType() == childForm.GetType())
+
+                {
+
+                    frm.Activate();
+
+                    return;
+
+                }
+
+            }
+
+            childForm.MdiParent = this;
+
+            childForm.Show();
+
+        }
+
+
         // FORM LOAD
         private void StaffDashboard_Load(object sender, EventArgs e)
         {
@@ -94,18 +121,22 @@ namespace CommunityClinic
         }
 
         // EXIT APPLICATION
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            Application.Exit();
 
         }
 
-        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StatusStripMDI_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            StatusStripMDI.Text = "Logged in as: Admin";
+
+        }
+
+        private void medicalHistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
 
         }
     }
